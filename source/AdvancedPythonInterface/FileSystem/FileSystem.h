@@ -1,5 +1,5 @@
-#ifndef ERDOG_FILESYSTEM_H
-#define ERDOG_FILESYSTEM_H
+#ifndef APYI_FILESYSTEM_H
+#define APYI_FILESYSTEM_H
 
 #include <stdint.h>
 #include <string>
@@ -23,4 +23,4 @@ namespace ApyiFileSystem
     
 }
 
-#endif //ERDOG_FILESYSTEM_H
+#endif //APYI_FILESYSTEM_H

@@ -2,7 +2,10 @@ file(GLOB_RECURSE APYI_DATE_SOURCE ./AdvancedPythonInterface/Date/*.cpp)
 file(GLOB_RECURSE APYI_DATE_HEADER ./AdvancedPythonInterface/Date/*.h)
 
 file(GLOB_RECURSE APYI_FILESYSTEM_SOURCE ./AdvancedPythonInterface/FileSystem/*.cpp)
-file(GLOB_RECURSE APYI_FILESYSTEM_HEADER ./FileSystem/*.h)
+file(GLOB_RECURSE APYI_FILESYSTEM_HEADER ./AdvancedPythonInterface/FileSystem/*.h)
+
+file(GLOB_RECURSE APYI_IMPORTER_SOURCE ./AdvancedPythonInterface/Importer/*.cpp)
+file(GLOB_RECURSE APYI_IMPORTER_HEADER ./AdvancedPythonInterface/Importer/*.h)
 
 file(GLOB_RECURSE APYI_LOGGING_SOURCE ./AdvancedPythonInterface/Logging/*.cpp)
 file(GLOB_RECURSE APYI_LOGGING_HEADER ./AdvancedPythonInterface/Logging/*.h)
@@ -24,6 +27,8 @@ add_library(apyi STATIC
         ${APYI_DATE_HEADER}
         ${APYI_FILESYSTEM_SOURCE}
         ${APYI_FILESYSTEM_HEADER}
+        ${APYI_IMPORTER_SOURCE}
+        ${APYI_IMPORTER_HEADER}
         ${APYI_LOGGING_SOURCE}
         ${APYI_LOGGING_HEADER}
         ${APYI_OBJECTRESOURCE_SOURCE}
@@ -32,4 +37,6 @@ add_library(apyi STATIC
         ${APYI_OBJECTUTILS_HEADER}
         ${APYI_PATTERNOPS_SOURCE}
         ${APYI_PATTERNOPS_HEADER}
+        ${APYI_PYTYPES_SOURCE}
+        ${APYI_PYTYPES_HEADER}
         )

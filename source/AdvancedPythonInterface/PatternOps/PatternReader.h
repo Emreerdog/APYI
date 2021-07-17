@@ -1,3 +1,6 @@
+#ifndef PATTERNREADER_H
+#define PATTERNREADER_H
+
 #include <string>
 #include <vector>
 
@@ -17,3 +20,5 @@ private:
     std::vector<SSymbolData> symbols;
     bool bIsReadSym;
 };
+
+#endif /* PATTERNREADER_H */

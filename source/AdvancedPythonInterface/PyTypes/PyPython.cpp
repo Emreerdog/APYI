@@ -11,3 +11,7 @@ PyObject* ApyiPyPython::GetPySelf() const{
 void* ApyiPyPython::Convert_C(){
     return nullptr;
 }
+
+void ApyiPyPython::SetPySelf(PyObject* target){
+    selfPy = target;
+}

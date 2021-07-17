@@ -1,3 +1,6 @@
+#ifndef APYI_OBJECTRESOURCES_H
+#define APYI_OBJECTRESOURCES_H
+
 #include <AdvancedPythonInterface/ObjectUtils/Singleton.h>
 
 #include <vector>
@@ -20,3 +23,5 @@ private:
     std::atomic<uint32_t> itemRemoved;
     uint32_t defaultCapacity;
 };
+
+#endif /* APYI_OBJECTRESOURCES_H */

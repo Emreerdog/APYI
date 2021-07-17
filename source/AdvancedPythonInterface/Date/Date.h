@@ -1,5 +1,5 @@
-#ifndef DATE_H_INCLUDED
-#define DATE_H_INCLUDED
+#ifndef APYI_DATE_H
+#define APYI_DATE_H
 
 #include <iostream>
 #include <time.h>
@@ -13,4 +13,4 @@ namespace ApyiTime
 
 // extern"C" __declspec(dllexport) const char* ErGetCurrentTime();
 
-#endif // DATE_H_INCLUDED
+#endif // APYI_DATE_H

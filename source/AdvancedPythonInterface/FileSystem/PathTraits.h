@@ -1,3 +1,6 @@
+#ifndef APYI_PATHTRAITS_H
+#define APYI_PATHTRAITS_H
+
 #include <string>
 #include <vector>
 
@@ -8,3 +11,5 @@ namespace ApyiPathTraits{
     void UnlLoop();
     std::vector<std::wstring> GetFilesUnderDirectory(const std::wstring& rootDir);
 }
+
+#endif /* APYI_PATHTRAITS_H */

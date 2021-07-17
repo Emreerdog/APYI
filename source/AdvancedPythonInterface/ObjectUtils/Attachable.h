@@ -1,3 +1,6 @@
+#ifndef APYI_ATTACHABLE_H
+#define APYI_ATTACHABLE_H
+
 #include <vector>
 
 class UAttachableObject {
@@ -9,3 +12,5 @@ protected:
 	void* PresentObject;
 	std::vector<void*> AttachedObjects;
 };
+
+#endif /* APYI_ATTACHABLE_H */

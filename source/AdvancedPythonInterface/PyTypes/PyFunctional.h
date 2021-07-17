@@ -1,14 +1,22 @@
+#ifndef PYFUNCTIONAL_H
+#define PYFUNCTIONAL_H
+
 #include <AdvancedPythonInterface/PyTypes/PyPython.h>
-#include <vector>
+
+class ApyiDict;
 
 class ApyiPy_Function : public ApyiPyPython{
 public:
-    explicit ApyiPy_Function(const std::string& callFrom, const std::string& fName);
+    ApyiPy_Function();
     PyObject* CallFunc();
-    std::vector<std::string> GetImportList();
-    void BindFunc(const std::string& name);
-
+    void SetFunctionName(const std::string&);
+    ApyiDict* GetFunctionDict();
+    void SetFunctionDict(ApyiDict*);
+    void AddGlobal(const std::string& , ApyiPyPython*);
+    // a
 private:
-    std::vector<std::string> Import_Vec;
-    std::string presentCaller;
+    std::string functionName;
+    ApyiDict* FunctionGlobals;
 };
+
+#endif /* PYFUNCTIONAL_H */

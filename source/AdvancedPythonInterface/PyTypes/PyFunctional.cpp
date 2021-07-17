@@ -1,21 +1,41 @@
 #include <AdvancedPythonInterface/PyTypes/PyFunctional.h>
+#include <AdvancedPythonInterface/PyTypes/PyDict.h>
 
-ApyiPy_Function::ApyiPy_Function(const std::string& callFrom, const std::string& fname)
+ApyiPy_Function::ApyiPy_Function()
 {
-    
+    functionName = "";
+    FunctionGlobals = nullptr;
 }
 
 PyObject* ApyiPy_Function::CallFunc()
 {
-    return nullptr;
+    PyObject* returnVal = PyObject_CallNoArgs(selfPy);
+    if(returnVal == NULL)
+    {
+        return nullptr;
+    }
+    return returnVal;
 }
 
-std::vector<std::string> ApyiPy_Function::GetImportList()
+void ApyiPy_Function::SetFunctionName(const std::string& fName)
 {
-    return std::vector<std::string>();
+    functionName = fName;
 }
 
-void ApyiPy_Function::BindFunc(const std::string& name)
+ApyiDict* ApyiPy_Function::GetFunctionDict()
 {
-
+    return FunctionGlobals;
 }
+
+void ApyiPy_Function::SetFunctionDict(ApyiDict* newDict)
+{
+    Py_CLEAR(FunctionGlobals);
+    FunctionGlobals = newDict;
+}
+
+void ApyiPy_Function::AddGlobal(const std::string& key, ApyiPyPython* targetGlobal)
+{
+    FunctionGlobals->SetItem(key, targetGlobal);
+}
+
+

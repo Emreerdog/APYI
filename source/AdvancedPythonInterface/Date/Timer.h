@@ -1,5 +1,5 @@
-#ifndef TIMER_H_INCLUDED
-#define TIMER_H_INCLUDED
+#ifndef APYI_TIMER_H
+#define APYI_TIMER_H
 
 #include <stdint.h>
 #include <thread>
@@ -13,4 +13,4 @@ public:
     void ReleaseTimer();
 };
 
-#endif // TIMER_H_INCLUDED
+#endif // APYI_TIMER_H

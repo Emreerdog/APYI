@@ -1,3 +1,6 @@
+#ifndef PYINT_H
+#define PYINT_H
+
 #include <AdvancedPythonInterface/PyTypes/PyPython.h>
 
 class ApyiPy_Int : public ApyiPyPython{
@@ -10,3 +13,5 @@ public:
 private:
     long c_val;
 };
+
+#endif /* PYINT_H */
