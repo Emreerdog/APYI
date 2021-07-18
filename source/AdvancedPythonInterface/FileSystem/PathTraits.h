@@ -6,10 +6,11 @@
 
 namespace ApyiPathTraits{
     bool SetRoot(const std::string& rootDir);
-    const wchar_t* EGetCurrentDir();
-    const wchar_t* EGetExeDir();
+    void EGetCurrentDir(std::wstring&);
+    void EGetExeDir(std::wstring&);
     void UnlLoop();
     std::vector<std::wstring> GetFilesUnderDirectory(const std::wstring& rootDir);
+    std::vector<std::wstring> GetScriptFiles();
 }
 
 #endif /* APYI_PATHTRAITS_H */

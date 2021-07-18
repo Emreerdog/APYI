@@ -66,6 +66,14 @@ PyObject* ApyiDict::GetItem(const std::string& key)
     return tempItem;
 }
 
+void ApyiDict::GetItemAsString(const std::string& key, std::string& out)
+{
+    PyObject* itemString = PyDict_GetItemString(selfPy, key.c_str()); // Borrowed
+    PyObject* encodedStr = PyUnicode_AsEncodedString(itemString, "UTF-8", "strict");
+    out = PyBytes_AS_STRING(encodedStr);
+    Py_CLEAR(encodedStr);
+}
+
 PyObject* ApyiDict::GetItemList()
 {
     if(itemList == NULL)

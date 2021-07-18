@@ -24,6 +24,10 @@ void ApyiPy_Function::SetFunctionName(const std::string& fName)
 
 ApyiDict* ApyiPy_Function::GetFunctionDict()
 {
+    if(FunctionGlobals == NULL)
+    {
+        FunctionGlobals->SetPySelf(PyFunction_GetGlobals(selfPy));
+    }
     return FunctionGlobals;
 }
 

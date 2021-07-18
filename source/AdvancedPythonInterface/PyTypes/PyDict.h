@@ -12,6 +12,7 @@ public:
     int SetItem(const std::string&, ApyiPyPython*);
     int RemoveItem(const std::string&);
     PyObject* GetItem(const std::string&);
+    void GetItemAsString(const std::string&, std::string&);
     PyObject* GetItemList();
 
 private:

@@ -3,6 +3,7 @@
 
 #ifdef _WIN32
 #include <windows.h>
+#include <pathcch.h>
 #include <tchar.h> 
 #include <stdio.h>
 #include <strsafe.h>
@@ -31,7 +32,7 @@ bool ApyiPathTraits::SetRoot(const std::string& rootDir)
     return true;
 }
 
-const wchar_t* ApyiPathTraits::EGetCurrentDir()
+void ApyiPathTraits::EGetCurrentDir(std::wstring& out)
 {
     // char buffer[256];
     // GetModuleFileNameA(NULL, buffer, 256);
@@ -41,21 +42,19 @@ const wchar_t* ApyiPathTraits::EGetCurrentDir()
 
     wchar_t buffer[256];
     GetCurrentDirectoryW(256, buffer);
-    return std::wstring(buffer).c_str();
+    out = std::wstring(buffer);
 #endif
-    return std::wstring(L"").c_str();
 }
 
-const wchar_t* ApyiPathTraits::EGetExeDir()
+void ApyiPathTraits::EGetExeDir(std::wstring& out)
 {
 
 #ifdef _WIN32
     wchar_t buffer[256];
     GetModuleFileNameW(NULL, buffer, 256);
     std::wstring::size_type pos = std::wstring(buffer).find_last_of(L"\\/");
-    return std::wstring(buffer).substr(0, pos).c_str();
+    out = std::wstring(buffer).substr(0, pos).c_str();
 #endif
-    return std::wstring(L"").c_str();
 }
 
 void ApyiPathTraits::UnlLoop()
@@ -74,8 +73,8 @@ std::vector<std::wstring> ApyiPathTraits::GetFilesUnderDirectory(const std::wstr
     HANDLE hFind = INVALID_HANDLE_VALUE;
 
     std::vector<std::wstring> workingVector;
-
     hFind = FindFirstFileW(rootDir.c_str(), &ffd);
+    
     do{
         workingVector.push_back(ffd.cFileName);
     }while(FindNextFileW(hFind, &ffd) != 0);
@@ -85,4 +84,11 @@ std::vector<std::wstring> ApyiPathTraits::GetFilesUnderDirectory(const std::wstr
 
 #endif
     return std::vector<std::wstring>();
+}
+
+std::vector<std::wstring> ApyiPathTraits::GetScriptFiles()
+{
+    std::wstring tempVal = L"";
+    ApyiPathTraits::EGetExeDir(tempVal);
+    return ApyiPathTraits::GetFilesUnderDirectory(tempVal + L"\\scripts\\*.py");
 }
