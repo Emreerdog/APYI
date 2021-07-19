@@ -1,3 +1,6 @@
+file(GLOB_RECURSE APYI_CONFIGURATOR_SOURCE ./AdvancedPythonInterface/Configurator/*.cpp)
+file(GLOB_RECURSE APYI_CONFIGURATOR_HEADER ./AdvancedPythonInterface/Configurator/*.h)
+
 file(GLOB_RECURSE APYI_DATE_SOURCE ./AdvancedPythonInterface/Date/*.cpp)
 file(GLOB_RECURSE APYI_DATE_HEADER ./AdvancedPythonInterface/Date/*.h)
 
@@ -23,6 +26,8 @@ file(GLOB_RECURSE APYI_PYTYPES_SOURCE ./AdvancedPythonInterface/PyTypes/*.cpp)
 file(GLOB_RECURSE APYI_PYTYPES_HEADER ./AdvancedPythonInterface/PyTypes/*.h)
 
 add_library(apyi STATIC
+        ${APYI_CONFIGURATOR_SOURCE}
+        ${APYI_CONFIGURATOR_HEADER}
         ${APYI_DATE_SOURCE}
         ${APYI_DATE_HEADER}
         ${APYI_FILESYSTEM_SOURCE}

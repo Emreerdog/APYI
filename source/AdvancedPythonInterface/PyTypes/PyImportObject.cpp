@@ -38,7 +38,7 @@ ApyiPy_Function* ApyiImportObject::GetFunction(const std::string& funcName)
     functionDict->SetPySelf(PyFunction_GetGlobals(requestedFunction));
     resultantFunc->SetPySelf(requestedFunction);
     resultantFunc->SetFunctionDict(functionDict);
-    resultantFunc->SetFunctionName(_funcName);
+    resultantFunc->SetPyName(_funcName);
 
     return resultantFunc;
 }

@@ -15,3 +15,12 @@ void* ApyiPyPython::Convert_C(){
 void ApyiPyPython::SetPySelf(PyObject* target){
     selfPy = target;
 }
+
+std::string ApyiPyPython::GetPyName(){
+    return selfName;
+}
+
+void ApyiPyPython::SetPyName(const std::string& targetName)
+{
+    selfName = targetName;
+}

@@ -9,13 +9,11 @@ class ApyiPy_Function : public ApyiPyPython{
 public:
     ApyiPy_Function();
     PyObject* CallFunc();
-    void SetFunctionName(const std::string&);
     ApyiDict* GetFunctionDict();
     void SetFunctionDict(ApyiDict*);
     void AddGlobal(const std::string& , ApyiPyPython*);
     // a
 private:
-    std::string functionName;
     ApyiDict* FunctionGlobals;
 };
 

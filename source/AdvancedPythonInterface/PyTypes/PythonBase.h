@@ -17,9 +17,13 @@ public:
     virtual PApyiCallData GetCallData() const = 0;
     virtual PyObject* GetPySelf() const = 0;
     virtual void SetPySelf(PyObject*) = 0;
+    virtual std::string GetPyName() = 0;
+    virtual void SetPyName(const std::string&) = 0;
+
 protected:
     PApyiCallData m_callData;
     PyObject* selfPy;
+    std::string selfName;
 };
 
 #endif /* PYPYTHONBASE_H */

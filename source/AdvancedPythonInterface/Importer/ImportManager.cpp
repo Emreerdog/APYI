@@ -6,9 +6,10 @@ ApyiImportManager::ApyiImportManager()
 
 }
 
-ApyiImportObject* ApyiImportManager::ImportModule(const std::string& moduleName)
+ApyiImportObject* ApyiImportManager::ImportModule(const std::string& moduleName, bool bIsDistributed=false)
 {
-    PyObject* importedObject = PyImport_ImportModule(moduleName.c_str());
+    const char* _mName = moduleName.c_str();
+    PyObject* importedObject = PyImport_ImportModule(_mName);
     if(importedObject == NULL)
     {
         return nullptr;
@@ -16,6 +17,7 @@ ApyiImportObject* ApyiImportManager::ImportModule(const std::string& moduleName)
 
     ApyiImportObject* resultantImObject = new ApyiImportObject();
     resultantImObject->SetPySelf(importedObject);
-    
+    resultantImObject->SetPyName(_mName);
+
     return resultantImObject;
 }

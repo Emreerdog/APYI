@@ -3,7 +3,6 @@
 
 ApyiPy_Function::ApyiPy_Function()
 {
-    functionName = "";
     FunctionGlobals = nullptr;
 }
 
@@ -15,11 +14,6 @@ PyObject* ApyiPy_Function::CallFunc()
         return nullptr;
     }
     return returnVal;
-}
-
-void ApyiPy_Function::SetFunctionName(const std::string& fName)
-{
-    functionName = fName;
 }
 
 ApyiDict* ApyiPy_Function::GetFunctionDict()

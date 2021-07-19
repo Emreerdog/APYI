@@ -22,9 +22,9 @@ message("${Python_INCLUDE_DIRS}")
 
 #find_package(Boost 1.74.0 REQUIRED)
 
-include_directories(./source/ ${Python_INCLUDE_DIRS})
+include_directories(./source/ ${Python_INCLUDE_DIRS} "${PROJECT_SOURCE_DIR}/source/AdvancedPythonInterface/ThirdParty/include/")
  
 add_subdirectory(source)
 
-target_link_libraries(APYI PRIVATE apyi ${Python_LIBRARIES})
-target_include_directories(APYI PUBLIC "${PROJECT_SOURCE_DIR}/source/"  ${Python_INCLUDE_DIRS})
+target_link_libraries(APYI PRIVATE apyi ${Python_LIBRARIES} "${PROJECT_SOURCE_DIR}/source/AdvancedPythonInterface/ThirdParty/lib/*.lib")
+target_include_directories(APYI PUBLIC "${PROJECT_SOURCE_DIR}/source/"  ${Python_INCLUDE_DIRS} "${PROJECT_SOURCE_DIR}/source/AdvancedPythonInterface/ThirdParty/include/")
