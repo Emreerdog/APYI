@@ -1,3 +1,6 @@
+#ifndef PYDISTRIBUTOR_H
+#define PYDISTRIBUTOR_H
+
 #include <AdvancedPythonInterface/ObjectUtils/Singleton.h>
 #include <string>
 #include <unordered_map>
@@ -6,7 +9,7 @@ class ApyiImportObject;
 class ApyiPy_Function;
 class ApyiDict;
 
-class ApyiDistributor : UErSingleton<ApyiDistributor>{
+class ApyiDistributor : public UErSingleton<ApyiDistributor>{
 public:
     ApyiPy_Function* RequestFunction(const std::string&);
     ApyiDict* RequestDict(const std::string&);
@@ -21,3 +24,5 @@ private:
     std::unordered_map<const char*, ApyiDict*> DistributedDicts;
     std::unordered_map<const char*, ApyiImportObject*> DistributedImports;
 };
+
+#endif /* PYDISTRIBUTOR_H */

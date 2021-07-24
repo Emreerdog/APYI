@@ -5,12 +5,16 @@
 
 class ApyiPyPython : public ApyiPythonBase{
 public:
+    ApyiPyPython();
+    ~ApyiPyPython();
     virtual PApyiCallData GetCallData() const override;
     virtual PyObject* GetPySelf() const override;
     virtual void* Convert_C(); 
     virtual void SetPySelf(PyObject*) override;
     virtual std::string GetPyName() override;
     virtual void SetPyName(const std::string&) override;
+    virtual void IncreaseReference() override;
+    virtual void DecreaseReference() override;
 
 protected:
 };

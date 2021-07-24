@@ -1,4 +1,0 @@
-C:/Users/emree/Desktop/OnemliSource/APYI/build/CMakeFiles/APYI.dir
-C:/Users/emree/Desktop/OnemliSource/APYI/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/emree/Desktop/OnemliSource/APYI/build/CMakeFiles/ZERO_CHECK.dir
-C:/Users/emree/Desktop/OnemliSource/APYI/build/source/CMakeFiles/apyi.dir

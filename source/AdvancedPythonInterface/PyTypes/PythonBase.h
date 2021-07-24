@@ -19,6 +19,8 @@ public:
     virtual void SetPySelf(PyObject*) = 0;
     virtual std::string GetPyName() = 0;
     virtual void SetPyName(const std::string&) = 0;
+    virtual void IncreaseReference() = 0;
+    virtual void DecreaseReference() = 0;
 
 protected:
     PApyiCallData m_callData;

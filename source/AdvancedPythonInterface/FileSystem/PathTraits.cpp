@@ -1,4 +1,5 @@
 #include <AdvancedPythonInterface/FileSystem/PathTraits.h>
+#include <AdvancedPythonInterface/ObjectUtils/StringUtils.h>
 #include <iostream>
 
 #ifdef _WIN32
@@ -8,10 +9,11 @@
 #include <stdio.h>
 #include <strsafe.h>
 #elif defined(__unix__) // all unices, not all compilers
+#include <unistd.h>
+#include <dirent.h>
 #elif defined(__linux__)
 #elif defined(__APPLE__)
 #endif
-
 bool ApyiPathTraits::SetRoot(const std::string& rootDir)
 {
 
@@ -43,6 +45,15 @@ void ApyiPathTraits::EGetCurrentDir(std::wstring& out)
     wchar_t buffer[256];
     GetCurrentDirectoryW(256, buffer);
     out = std::wstring(buffer);
+#elif defined(__unix__)
+    char cWd[256];
+    if(getcwd(cWd, sizeof(cWd)) != NULL)
+    {
+        //out = sConv.from_bytes(cWd);
+        ApyiStringUtils::StringToWide(cWd, out);
+    }
+    // else
+    // Failed somehow
 #endif
 }
 
@@ -54,6 +65,8 @@ void ApyiPathTraits::EGetExeDir(std::wstring& out)
     GetModuleFileNameW(NULL, buffer, 256);
     std::wstring::size_type pos = std::wstring(buffer).find_last_of(L"\\/");
     out = std::wstring(buffer).substr(0, pos).c_str();
+#elif defined(__unix__)
+    
 #endif
 }
 
@@ -81,7 +94,22 @@ std::vector<std::wstring> ApyiPathTraits::GetFilesUnderDirectory(const std::wstr
 
     FindClose(hFind);
     return workingVector;
-
+#elif defined(__unix__)
+    DIR* directoryHandle; // Directory descp
+    std::string _rootDir = "";
+    ApyiStringUtils::WideToString(rootDir, _rootDir);
+    directoryHandle = opendir(_rootDir.c_str());
+    if(directoryHandle)
+    {
+        std::vector<std::wstring> workingVector;
+        dirent* dirIter;
+        while((dirIter = readdir(directoryHandle)) != NULL)
+        {
+            workingVector.push_back(ApyiStringUtils::StringToWide(dirIter->d_name));
+        }
+        return workingVector;
+    }
+    return std::vector<std::wstring>();
 #endif
     return std::vector<std::wstring>();
 }

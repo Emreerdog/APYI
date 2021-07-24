@@ -6,11 +6,11 @@
 #include <fstream>
 
 #ifdef _WIN32
-#include <windows.h>
-#include <shlwapi.h>
+    #include <windows.h>
+    #include <shlwapi.h>
 #elif defined(__unix__) // all unices, not all compilers
-#elif defined(__linux__)
-#elif defined(__APPLE__)
+    #include <sys/stat.h>
+    #include <unistd.h>
 #endif
 
 // Standard C style file creation
@@ -42,6 +42,18 @@ bool ApyiFileSystem::ErCreateDirectory(const char* directoryName)
         return 0;
     }
     }
+#elif defined(__unix__)
+    int resultCheck = mkdir(directoryName, 0777); // Full permission
+    if(!resultCheck)
+    {
+        // Directory created
+        ER_LOG(ApyiLogging::kError, "Directory created successfully %s", directoryName);
+    }
+    else{
+        // Failed to create directory
+        ER_LOG(ApyiLogging::kError, "Directory couldn't created %s", directoryName);
+    }
+    return resultCheck;
 #endif
 }
 
@@ -66,6 +78,17 @@ bool ApyiFileSystem::ErRemoveFile(const char* fileName)
     }
 
     }
+#elif defined(__unix__)
+    int resultCheck = remove(fileName);
+    if(resultCheck == 0)
+    {
+        // File removed successfully
+    }
+    else
+    {
+        ER_LOG(ApyiLogging::kError, "File couldn't removed %s", fileName);
+    }
+    return resultCheck;
 #endif
 }
 
@@ -87,6 +110,7 @@ int ApyiFileSystem::ErRemoveDirectory(const char* directoryName)
             NULL
     };
     return SHFileOperation(&file_op);
+#elif defined(__unix__)
 #endif
 }
 
@@ -107,7 +131,7 @@ int ApyiFileSystem::ErRenameFile(const char* fileLocation, const char* newName)
             ""
     };
     return SHFileOperation(&file_op);
-
+#elif defined(__unix__)
 #endif
 }
 
