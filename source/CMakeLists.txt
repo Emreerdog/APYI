@@ -22,6 +22,10 @@ file(GLOB_RECURSE APYI_OBJECTUTILS_HEADER ./AdvancedPythonInterface/ObjectUtils/
 file(GLOB_RECURSE APYI_PATTERNOPS_SOURCE ./AdvancedPythonInterface/PatternOps/*.cpp)
 file(GLOB_RECURSE APYI_PATTERNOPS_HEADER ./AdvancedPythonInterface/PatternOps/*.h)
 
+file(GLOB_RECURSE APYI_PROGRAM_SOURCE ./AdvancedPythonInterface/Program/*.cpp)
+file(GLOB_RECURSE APYI_PROGRAM_HEADER ./AdvancedPythonInterface/Program/*.h)
+
+
 file(GLOB_RECURSE APYI_PYTYPES_SOURCE ./AdvancedPythonInterface/PyTypes/*.cpp)
 file(GLOB_RECURSE APYI_PYTYPES_HEADER ./AdvancedPythonInterface/PyTypes/*.h)
 
@@ -42,6 +46,8 @@ add_library(apyi STATIC
         ${APYI_OBJECTUTILS_HEADER}
         ${APYI_PATTERNOPS_SOURCE}
         ${APYI_PATTERNOPS_HEADER}
+        ${APYI_PROGRAM_SOURCE}
+        ${APYI_PROGRAM_HEADER}
         ${APYI_PYTYPES_SOURCE}
         ${APYI_PYTYPES_HEADER}
         )

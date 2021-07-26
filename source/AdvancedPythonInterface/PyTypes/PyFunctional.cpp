@@ -17,6 +17,11 @@ PyObject* ApyiPy_Function::CallFunc()
     return returnVal;
 }
 
+PyObject* ApyiPy_Function::CallOneArg()
+{
+
+}
+
 ApyiDict* ApyiPy_Function::GetFunctionDict()
 {
     if(FunctionGlobals == NULL)

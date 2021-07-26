@@ -1,17 +1,17 @@
 #include <AdvancedPythonInterface/PyTypes/PyTuple.h>
 
-ApyiPy_Tuple::ApyiPy_Tuple(size_t givenSize)
-{
-    tupleSize = givenSize;
-    tupleIndex = 0;
-    selfPy = PyTuple_New(givenSize);
-}
-
 ApyiPy_Tuple::ApyiPy_Tuple()
 {
     tupleSize = 0;
     tupleIndex = 0;
     selfPy = PyTuple_New(tupleSize + 1);
+}
+
+ApyiPy_Tuple::ApyiPy_Tuple(size_t givenSize)
+{
+    tupleSize = givenSize;
+    tupleIndex = 0;
+    selfPy = PyTuple_New(givenSize);
 }
 
 void ApyiPy_Tuple::AddItem(ApyiPyPython* givenItem)

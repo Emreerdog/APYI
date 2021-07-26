@@ -17,9 +17,11 @@ public:
     void DistributeFunction(ApyiPy_Function*, bool);
     void DistributeDict(ApyiDict*, bool);
     void DistributeModule(ApyiImportObject*, bool);
-    
+    void ReserveShared(ApyiPy_Function*);
+    ApyiPy_Function* GetSharedFunction(const std::string&);
+
 private:
-    
+    std::unordered_map<const char*, ApyiPy_Function*> SharedFunctions;
     std::unordered_map<const char*, ApyiPy_Function*> DistributedFunctions;
     std::unordered_map<const char*, ApyiDict*> DistributedDicts;
     std::unordered_map<const char*, ApyiImportObject*> DistributedImports;

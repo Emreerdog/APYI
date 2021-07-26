@@ -2,7 +2,7 @@
 #include <json/json.h>
 #include <string>
 
-class ApyiInitConfig : public UErSingleton<ApyiInitConfig> {
+class ApyiConfig : public UErSingleton<ApyiConfig> {
 public:
     void LoadConfigFile(const std::string&);
     void ApplyConfig();
@@ -10,4 +10,5 @@ public:
 
 private:
     Json::Value configContent;
+    void AfterInit();
 };

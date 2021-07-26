@@ -5,8 +5,8 @@
 
 class ApyiPy_Tuple : public ApyiPyPython{
 public:
-    explicit ApyiPy_Tuple(size_t);
     ApyiPy_Tuple();
+    explicit ApyiPy_Tuple(size_t);
     void AddItem(ApyiPyPython*);
     void SetItem(int, ApyiPyPython*);
     size_t GetSize();

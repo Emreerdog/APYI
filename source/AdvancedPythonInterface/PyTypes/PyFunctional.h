@@ -10,6 +10,7 @@ class ApyiPy_Function : public ApyiPyPython{
 public:
     ApyiPy_Function();
     PyObject* CallFunc();
+    PyObject* CallOneArg();
     PyObject* CallArgs(ApyiPy_Tuple*);
     ApyiDict* GetFunctionDict();
     void SetFunctionDict(ApyiDict*);

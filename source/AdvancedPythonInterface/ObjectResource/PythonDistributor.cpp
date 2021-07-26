@@ -50,3 +50,19 @@ void ApyiDistributor::DistributeModule(ApyiImportObject* iPtr, bool bOverwrite=t
 {
     DistributedImports[iPtr->GetPyName().c_str()] = iPtr;
 }
+
+void ApyiDistributor::ReserveShared(ApyiPy_Function* sName)
+{
+    SharedFunctions[sName->GetPyName().c_str()] = sName;
+}
+
+ApyiPy_Function* ApyiDistributor::GetSharedFunction(const std::string& target)
+{
+    auto resultant = SharedFunctions.find(target.c_str());
+    if(resultant != SharedFunctions.end())
+    {
+        return resultant->second;
+    }
+
+    return nullptr; // Not found
+}
