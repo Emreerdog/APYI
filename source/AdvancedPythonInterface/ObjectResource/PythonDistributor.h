@@ -14,9 +14,9 @@ public:
     ApyiPy_Function* RequestFunction(const std::string&);
     ApyiDict* RequestDict(const std::string&);
     ApyiImportObject* RequestModule(const std::string&);
-    void DistributeFunction(ApyiPy_Function*, bool);
-    void DistributeDict(ApyiDict*, bool);
-    void DistributeModule(ApyiImportObject*, bool);
+    void DistributeFunction(ApyiPy_Function*);
+    void DistributeDict(ApyiDict*);
+    void DistributeModule(ApyiImportObject*);
     void ReserveShared(ApyiPy_Function*);
     ApyiPy_Function* GetSharedFunction(const std::string&);
 

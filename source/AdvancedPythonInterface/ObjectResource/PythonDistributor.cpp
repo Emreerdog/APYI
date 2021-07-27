@@ -36,17 +36,17 @@ ApyiImportObject* ApyiDistributor::RequestModule(const std::string& mName)
     return nullptr; // Not found
 }
 
-void ApyiDistributor::DistributeFunction(ApyiPy_Function* fPtr, bool bOverwrite=true)
+void ApyiDistributor::DistributeFunction(ApyiPy_Function* fPtr)
 {
     DistributedFunctions[fPtr->GetPyName().c_str()] = fPtr;
 }
 
-void ApyiDistributor::DistributeDict(ApyiDict* dPtr, bool bOverwrite=true)
+void ApyiDistributor::DistributeDict(ApyiDict* dPtr)
 {
     DistributedDicts[dPtr->GetPyName().c_str()] = dPtr;
 }
 
-void ApyiDistributor::DistributeModule(ApyiImportObject* iPtr, bool bOverwrite=true)
+void ApyiDistributor::DistributeModule(ApyiImportObject* iPtr)
 {
     DistributedImports[iPtr->GetPyName().c_str()] = iPtr;
 }

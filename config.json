@@ -1,5 +1,5 @@
 {
-    "relativeScriptPath" : "/script/",
+    "relativeScriptPath" : "\\script\\",
     "programName" : "Hello APYI",
     "sharedLibs":
     [

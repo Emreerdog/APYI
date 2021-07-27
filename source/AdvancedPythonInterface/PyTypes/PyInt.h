@@ -2,16 +2,42 @@
 #define PYINT_H
 
 #include <AdvancedPythonInterface/PyTypes/PyPython.h>
+#include <iostream>
 
 class ApyiPy_Int : public ApyiPyPython{
 public:
-    explicit ApyiPy_Int(long value);
-    void operator=(const long& other);
-    void operator+=(const long& other);
+    ApyiPy_Int();
+    ApyiPy_Int(PyObject*);
+    explicit ApyiPy_Int(long);
+    void operator=(const long&);
+    
+    ApyiPy_Int operator+(const ApyiPyPython&);
+    ApyiPy_Int operator+(const long&);
+    ApyiPy_Int operator+=(const ApyiPyPython&);
+    ApyiPy_Int operator+=(const long&);
+
+    ApyiPy_Int operator-(const ApyiPyPython&);
+    ApyiPy_Int operator-(const long&);
+    ApyiPy_Int operator-=(const ApyiPyPython&);
+    ApyiPy_Int operator-=(const long&);
+    
+    ApyiPy_Int operator*(const ApyiPyPython&);
+    ApyiPy_Int operator*(const long&);
+    ApyiPy_Int operator*=(const ApyiPyPython&);
+    ApyiPy_Int operator*=(const long&);
+
+    ApyiPy_Int operator/(const ApyiPyPython&);
+    ApyiPy_Int operator/(const long&);
+    ApyiPy_Int operator/=(const ApyiPyPython&);
+    ApyiPy_Int operator/=(const long&);
+    long AsCInt() const;
+
     ~ApyiPy_Int();
-    void* Convert_C();
+
+    friend std::ostream& operator<<(std::ostream& os, const ApyiPy_Int& other);
+
 private:
-    long c_val;
+    
 };
 
 #endif /* PYINT_H */

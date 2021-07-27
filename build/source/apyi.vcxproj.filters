@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\Configurator\Config.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\Date\Date.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\Date\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\FileSystem\FileSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\FileSystem\PathTraits.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\Importer\ImportManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectResource\ObjectResource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectResource\PythonDistributor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectUtils\Attachable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectUtils\StringUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PatternOps\PatternReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\Program\EntryPoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\CallData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\PyDict.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\PyFunctional.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\PyImportObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\PyInt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\PyPython.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\PyString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\PyTuple.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\Configurator\Config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\Date\Date.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\Date\Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\FileSystem\FileSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\FileSystem\PathTraits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\Importer\ImportManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\Logging\Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectResource\ObjectResource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectResource\PythonDistributor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectUtils\Attachable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectUtils\NonCopyable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectUtils\Singleton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectUtils\StringUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PatternOps\PatternReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\Program\EntryPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\CallData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\PyDict.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\PyFunctional.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\PyImportObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\PyInt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\PyPython.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\PyString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\PyTuple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\PyTypes\PythonBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\emree\Desktop\Err\APYI\source\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{567EF57B-CDA3-3C71-860F-B34061F71AD9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{201D6BBD-587E-3552-ABB9-3E3E59C01A6A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

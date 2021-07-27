@@ -17,9 +17,10 @@ PyObject* ApyiPy_Function::CallFunc()
     return returnVal;
 }
 
-PyObject* ApyiPy_Function::CallOneArg()
+PyObject* ApyiPy_Function::CallOneArg(ApyiPyPython* arg)
 {
-
+    PyObject* argSelf = arg->GetPySelf();
+    return PyObject_CallOneArg(selfPy, argSelf);
 }
 
 ApyiDict* ApyiPy_Function::GetFunctionDict()

@@ -10,6 +10,7 @@ namespace ApyiStringUtils
     std::wstring StringToWide(const std::string&);
     void WideToString(const std::wstring&, std::string&);
     void StringToJson(const std::string&, Json::Value&);
+    void RemoveExtension(std::string&);
 
 }
 

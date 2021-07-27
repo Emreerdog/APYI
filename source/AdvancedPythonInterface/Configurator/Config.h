@@ -7,8 +7,7 @@ public:
     void LoadConfigFile(const std::string&);
     void ApplyConfig();
     Json::Value& GetJsonContent();
-
+    void AfterInit();
 private:
     Json::Value configContent;
-    void AfterInit();
 };

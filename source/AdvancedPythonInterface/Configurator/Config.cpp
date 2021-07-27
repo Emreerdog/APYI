@@ -4,6 +4,8 @@
 #include <AdvancedPythonInterface/FileSystem/FileSystem.h>
 #include <AdvancedPythonInterface/Importer/ImportManager.h>
 #include <AdvancedPythonInterface/PyTypes/PyFunctional.h>
+#include <AdvancedPythonInterface/PyTypes/PyString.h>
+#include <AdvancedPythonInterface/PyTypes/PyDict.h>
 #include <AdvancedPythonInterface/PyTypes/PyImportObject.h>
 #include <iostream>
 
@@ -22,21 +24,38 @@ void ApyiConfig::ApplyConfig()
 
     std::wstring modulePath;
     ApyiPathTraits::EGetCurrentDir(modulePath);
-    std::wstring defaultPyPath = Py_GetPath();
+    std::wstring PydefaultPyPath = Py_GetPath();
     modulePath += ApyiStringUtils::StringToWide(configContent["relativeScriptPath"].asCString());
-    std::wstring resultPath = defaultPyPath + L":" + modulePath;
+    std::wstring resultPath = PydefaultPyPath + L";" + modulePath;
 
     Py_SetPath(resultPath.c_str());
 }
 
 void ApyiConfig::AfterInit()
 {
-    ApyiImportObject* sharedHandlerModule = ApyiImportManager::GetInstance().ImportModule("ctypes", false);
+    ApyiImportManager& importManager = ApyiImportManager::GetInstance();
+    ApyiImportObject* sharedHandlerModule = importManager.ImportModule("ctypes", false);
     ApyiPy_Function* sharedHandler = sharedHandlerModule->GetFunction("CDLL");
-    for(int i = 0; i < configContent["sharedLibs"].size(); i++)
+    // for(int i = 0; i < configContent["sharedLibs"].size(); i++)
+    // {
+    //     ApyiPyString tempStr(configContent["sharedLibs"].asCString());
+    //     sharedHandler->CallOneArg(&tempStr);
+    // }
+    std::vector<std::wstring> wScriptFiles = ApyiPathTraits::GetScriptFiles();
+    for(auto n : wScriptFiles)
     {
-        ApyiPy_Tuple a();
-
+        std::string convertedTypes;
+        ApyiStringUtils::WideToString(n, convertedTypes);
+        ApyiStringUtils::RemoveExtension(convertedTypes);
+        ApyiImportObject* currentModule = importManager.ImportModule(convertedTypes.c_str(), true);
+        if(convertedTypes == "myModule")
+        {
+            ApyiPy_Function* currentFunc = currentModule->GetFunction("shit");
+            ApyiDict* funcDict = currentFunc->GetFunctionDict();
+            ApyiPyString mString("helloworld");
+            funcDict->SetItem("Nude", &mString);
+            currentFunc->CallFunc();
+        }
     }
 }
 

@@ -118,5 +118,6 @@ std::vector<std::wstring> ApyiPathTraits::GetScriptFiles()
 {
     std::wstring tempVal = L"";
     ApyiPathTraits::EGetExeDir(tempVal);
+    std::wcout << tempVal + L"\\scripts\\*.py" << std::endl;
     return ApyiPathTraits::GetFilesUnderDirectory(tempVal + L"\\scripts\\*.py");
 }

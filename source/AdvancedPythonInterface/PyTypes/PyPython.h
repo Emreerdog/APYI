@@ -8,6 +8,7 @@ public:
     ApyiPyPython();
     ~ApyiPyPython();
     virtual PApyiCallData GetCallData() const override;
+    virtual void SetCallData(PApyiCallData&) override;
     virtual PyObject* GetPySelf() const override;
     virtual void* Convert_C(); 
     virtual void SetPySelf(PyObject*) override;

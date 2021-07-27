@@ -1,0 +1,2 @@
+def typer():
+    print(ananke)

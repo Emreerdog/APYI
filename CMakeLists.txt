@@ -26,5 +26,5 @@ include_directories(./source/ ${Python_INCLUDE_DIRS} "${PROJECT_SOURCE_DIR}/sour
  
 add_subdirectory(source)
 
-target_link_libraries(APYI PRIVATE apyi ${Python_LIBRARIES} "${PROJECT_SOURCE_DIR}/source/AdvancedPythonInterface/ThirdParty/lib/libjsoncpp.a")
+target_link_libraries(APYI PRIVATE apyi ${Python_LIBRARIES} "${PROJECT_SOURCE_DIR}/source/AdvancedPythonInterface/ThirdParty/lib/jsoncpp_static.lib")
 target_include_directories(APYI PUBLIC "${PROJECT_SOURCE_DIR}/source/"  ${Python_INCLUDE_DIRS} "${PROJECT_SOURCE_DIR}/source/AdvancedPythonInterface/ThirdParty/include/")

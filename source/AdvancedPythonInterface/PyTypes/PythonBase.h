@@ -15,6 +15,7 @@
 class ApyiPythonBase{
 public:
     virtual PApyiCallData GetCallData() const = 0;
+    virtual void SetCallData(PApyiCallData&) = 0;
     virtual PyObject* GetPySelf() const = 0;
     virtual void SetPySelf(PyObject*) = 0;
     virtual std::string GetPyName() = 0;

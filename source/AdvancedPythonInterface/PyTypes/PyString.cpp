@@ -2,21 +2,32 @@
 
 ApyiPyString::ApyiPyString()
 {
-    mString = "";
+    
 }
 
 ApyiPyString::ApyiPyString(const std::string& rhs)
 {
-
+    selfPy = PyUnicode_FromString(rhs.c_str());
+    m_callData.bHasAttribute = false;
+    m_callData.ObjectSize = PyUnicode_GET_LENGTH(selfPy);
+    m_callData.TypeName = "String";
 }
 
 unsigned int ApyiPyString::GetLength()
 {
-    return 0;
+    return PyUnicode_GET_LENGTH(selfPy);
 }
 
 bool ApyiPyString::IsEmpty()
 {
     return false;
+}
+
+const char* ApyiPyString::AsString()
+{
+    PyObject* temp_bytes = PyUnicode_AsEncodedString(selfPy, "UTF-8", "strict");
+    const char* result = PyBytes_AS_STRING(temp_bytes);
+    Py_CLEAR(temp_bytes);
+    return result;
 }
 

@@ -14,6 +14,10 @@ PApyiCallData ApyiPyPython::GetCallData() const {
     return m_callData;
 }
 
+void ApyiPyPython::SetCallData(PApyiCallData& target){
+    m_callData = target;
+}
+
 PyObject* ApyiPyPython::GetPySelf() const{
     return selfPy;
 }
