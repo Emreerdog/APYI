@@ -19,6 +19,9 @@
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\Importer\ImportManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectResource\ModuleResource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectResource\ObjectResource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -82,6 +85,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\Logging\Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectResource\ModuleResource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectResource\ObjectResource.h">

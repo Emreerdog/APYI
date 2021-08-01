@@ -14,6 +14,7 @@ public:
     virtual void SetPySelf(PyObject*) override;
     virtual std::string GetPyName() override;
     virtual void SetPyName(const std::string&) override;
+    virtual void SetPyFlag(const ApyiPyFlag&) override;
     virtual void IncreaseReference() override;
     virtual void DecreaseReference() override;
 

@@ -9,8 +9,9 @@ class ApyiDict;
 class ApyiImportObject : public ApyiPyPython{
 public:
     ApyiImportObject();
+    ApyiImportObject(const ApyiImportObject&);
     ~ApyiImportObject();
-    ApyiPy_Function* GetFunction(const std::string& funcName);
+    ApyiPy_Function GetFunction(const std::string& funcName);
     ApyiDict* GetDict();
     ApyiPyPython* GetVariable(const std::string& varName);
 private:

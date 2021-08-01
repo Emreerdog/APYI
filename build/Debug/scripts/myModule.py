@@ -1,2 +1,5 @@
 def shit():
-    print(Nude)
+    print(paralar)
+
+def anan():
+    print(faruk)

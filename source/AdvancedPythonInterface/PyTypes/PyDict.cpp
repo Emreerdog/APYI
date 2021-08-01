@@ -5,6 +5,12 @@ ApyiDict::ApyiDict()
     selfPy = PyDict_New();
 }
 
+ApyiDict::ApyiDict(const ApyiDict& other)
+{
+    selfPy = other.selfPy;
+    itemList = other.itemList;
+}
+
 ApyiDict::ApyiDict(bool bIsNew)
 {
     if(bIsNew)
@@ -17,10 +23,18 @@ ApyiDict::ApyiDict(bool bIsNew)
     }
 }
 
+ApyiDict::~ApyiDict()
+{
+    ClearDict();
+}
 
 void ApyiDict::ClearDict()
 {
-    PyDict_Clear(selfPy);
+    if(EPF == ApyiPyFlag::APYI_RELEASE)
+    {
+        PyDict_Clear(selfPy);
+        Py_CLEAR(itemList);
+    }
 }
 
 int ApyiDict::IsContains(const std::string& key, ApyiPyPython* value)

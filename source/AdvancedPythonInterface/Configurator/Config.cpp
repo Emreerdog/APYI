@@ -34,8 +34,8 @@ void ApyiConfig::ApplyConfig()
 void ApyiConfig::AfterInit()
 {
     ApyiImportManager& importManager = ApyiImportManager::GetInstance();
-    ApyiImportObject* sharedHandlerModule = importManager.ImportModule("ctypes", false);
-    ApyiPy_Function* sharedHandler = sharedHandlerModule->GetFunction("CDLL");
+    ApyiImportObject sharedHandlerModule = importManager.ImportModule("ctypes", false);
+    ApyiPy_Function sharedHandler = sharedHandlerModule.GetFunction("CDLL");
     // for(int i = 0; i < configContent["sharedLibs"].size(); i++)
     // {
     //     ApyiPyString tempStr(configContent["sharedLibs"].asCString());
@@ -47,14 +47,14 @@ void ApyiConfig::AfterInit()
         std::string convertedTypes;
         ApyiStringUtils::WideToString(n, convertedTypes);
         ApyiStringUtils::RemoveExtension(convertedTypes);
-        ApyiImportObject* currentModule = importManager.ImportModule(convertedTypes.c_str(), true);
+        ApyiImportObject currentModule = importManager.ImportModule(convertedTypes.c_str(), true);
         if(convertedTypes == "myModule")
         {
-            ApyiPy_Function* currentFunc = currentModule->GetFunction("shit");
-            ApyiDict* funcDict = currentFunc->GetFunctionDict();
+            ApyiPy_Function currentFunc = currentModule.GetFunction("shit");
+            ApyiDict funcDict = currentFunc.GetFunctionDict();
             ApyiPyString mString("helloworld");
-            funcDict->SetItem("Nude", &mString);
-            currentFunc->CallFunc();
+            funcDict.SetItem("Nude", &mString);
+            currentFunc.CallFunc();
         }
     }
 }

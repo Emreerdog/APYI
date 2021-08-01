@@ -7,12 +7,18 @@ ApyiImportObject::ApyiImportObject()
     
 }
 
+ApyiImportObject::ApyiImportObject(const ApyiImportObject& other)
+{
+    selfPy = other.selfPy;
+    selfName = other.selfName;
+}
+
 ApyiImportObject::~ApyiImportObject()
 {
     Py_CLEAR(selfPy);
 }
 
-ApyiPy_Function* ApyiImportObject::GetFunction(const std::string& funcName)
+ApyiPy_Function ApyiImportObject::GetFunction(const std::string& funcName)
 {
     const char* _funcName = funcName.c_str();
     PyObject* requestedFunction = PyObject_GetAttrString(selfPy, _funcName);
@@ -22,7 +28,7 @@ ApyiPy_Function* ApyiImportObject::GetFunction(const std::string& funcName)
         // TODO
         // Give reasonable info
 
-        return nullptr;
+        return ApyiPy_Function();
     }
 
     if(PyFunction_Check(requestedFunction) == NULL)
@@ -30,15 +36,17 @@ ApyiPy_Function* ApyiImportObject::GetFunction(const std::string& funcName)
         // Given symbol is not a function
         Py_CLEAR(requestedFunction);
         
-        return nullptr;
+        return ApyiPy_Function();
     }
 
-    ApyiPy_Function* resultantFunc = new ApyiPy_Function();
-    ApyiDict* functionDict = new ApyiDict(false);
-    functionDict->SetPySelf(PyFunction_GetGlobals(requestedFunction));
-    resultantFunc->SetPySelf(requestedFunction);
-    resultantFunc->SetFunctionDict(functionDict);
-    resultantFunc->SetPyName(_funcName);
+    ApyiPy_Function resultantFunc;
+    ApyiDict functionDict;
+    functionDict.SetPyFlag(ApyiPyFlag::APYI_NOT_RELEASE);
+    functionDict.SetPySelf(PyFunction_GetGlobals(requestedFunction));
+    resultantFunc.SetPySelf(requestedFunction);
+    resultantFunc.SetFunctionDict(functionDict);
+    resultantFunc.SetPyFlag(ApyiPyFlag::APYI_NOT_RELEASE);
+    resultantFunc.SetPyName(_funcName);
 
     return resultantFunc;
 }

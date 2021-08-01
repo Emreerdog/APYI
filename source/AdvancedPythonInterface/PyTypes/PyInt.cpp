@@ -10,138 +10,128 @@ ApyiPy_Int::ApyiPy_Int(PyObject* val)
     selfPy = val;
 }
 
-ApyiPy_Int::ApyiPy_Int(long value)
-{
-    selfPy = PyLong_FromLong(value);
-
-    m_callData.bHasAttribute = false;
-    m_callData.TypeName = "long";
-    m_callData.ObjectSize = 0;
-
+ApyiPy_Int::ApyiPy_Int(const long& other){
+    Py_CLEAR(selfPy);
+    selfPy = PyLong_FromLong(other);
+    
 }
 
-void ApyiPy_Int::operator=(const long& other){
-    Py_CLEAR(this->selfPy);
-    this->selfPy = PyLong_FromLong(other);
-
+ApyiPy_Int::ApyiPy_Int(const ApyiPy_Int& other)
+{
+    Py_CLEAR(selfPy);
+    selfPy = PyLong_FromLong(other.AsCInt());
 }
 
 ApyiPy_Int ApyiPy_Int::operator+(const ApyiPyPython& other)
 {
     PyObject* result = PyNumber_Add(selfPy, other.GetPySelf());
-    static ApyiPy_Int tP(result);
-    return tP;
+    return ApyiPy_Int(result);
 }
 
 ApyiPy_Int ApyiPy_Int::operator+(const long& other)
 {
     PyObject* tempLong = PyLong_FromLong(other);
     PyObject* resultant = PyNumber_Add(selfPy, tempLong);
-    static ApyiPy_Int tP(resultant);
-
     Py_CLEAR(tempLong);
-
-    return tP;
+    return ApyiPy_Int(resultant);
 }
 
 ApyiPy_Int ApyiPy_Int::operator+=(const ApyiPyPython& other)
 {
     PyObject* result = PyNumber_Add(selfPy, other.GetPySelf());
-    static ApyiPy_Int tP(result);
-    return tP;
+    return ApyiPy_Int(result);
 }
 
 ApyiPy_Int ApyiPy_Int::operator+=(const long& other)
 {
     PyObject* tempLong = PyLong_FromLong(other);
     PyObject* resultant = PyNumber_Add(selfPy, tempLong);
-    static ApyiPy_Int tP(resultant);
     Py_CLEAR(tempLong);
-    return tP;
+    return ApyiPy_Int(resultant);
 }
 
 ApyiPy_Int ApyiPy_Int::operator-(const ApyiPyPython& other)
 {
     PyObject* resultant = PyNumber_Subtract(selfPy, other.GetPySelf());
-    static ApyiPy_Int tP(resultant);
-    return tP;
+    return ApyiPy_Int(resultant);
 }
 
 ApyiPy_Int ApyiPy_Int::operator-(const long& other)
 {
     PyObject* tempLong = PyLong_FromLong(other);
     PyObject* resultant = PyNumber_Subtract(selfPy, tempLong);
-    static ApyiPy_Int tP(resultant);
     Py_CLEAR(tempLong);
-    return tP;
+    return ApyiPy_Int(resultant);
 }
 
 ApyiPy_Int ApyiPy_Int::operator-=(const ApyiPyPython& other)
 {
     PyObject* resultant = PyNumber_Subtract(selfPy, other.GetPySelf());
-    static ApyiPy_Int tP(resultant);
-    return tP;
+    return ApyiPy_Int(resultant);
 }
 
 ApyiPy_Int ApyiPy_Int::operator-=(const long& other)
 {
     PyObject* tempLong = PyLong_FromLong(other);
     PyObject* resultant = PyNumber_Subtract(selfPy, tempLong);
-    static ApyiPy_Int tP(resultant);
     Py_CLEAR(tempLong);
-    return tP;
+    return ApyiPy_Int(resultant);
 }
 
 ApyiPy_Int ApyiPy_Int::operator*(const ApyiPyPython& other)
 {
     PyObject* resultant = PyNumber_Multiply(selfPy, other.GetPySelf());
-    static ApyiPy_Int tP(resultant);
-    return tP;
+    return ApyiPy_Int(resultant);
 }
 
 ApyiPy_Int ApyiPy_Int::operator*(const long& other)
 {
     PyObject* tempLong = PyLong_FromLong(other);
     PyObject* resultant = PyNumber_Multiply(selfPy, tempLong);
-    static ApyiPy_Int tP(resultant);
     Py_CLEAR(tempLong);
-    return tP;
+    return ApyiPy_Int(resultant);
 }
 
 ApyiPy_Int ApyiPy_Int::operator*=(const ApyiPyPython& other)
 {
     PyObject* resultant = PyNumber_Multiply(selfPy, other.GetPySelf());
-    static ApyiPy_Int tP(resultant);
-    return tP;
+    return ApyiPy_Int(resultant);
 }
 
 ApyiPy_Int ApyiPy_Int::operator*=(const long& other)
 {
     PyObject* tempLong = PyLong_FromLong(other);
     PyObject* resultant = PyNumber_Multiply(selfPy, tempLong);
-    static ApyiPy_Int tP(resultant);
     Py_CLEAR(tempLong);
-    return tP;
+    return ApyiPy_Int(resultant);
 }
 
 ApyiPy_Int ApyiPy_Int::operator/(const ApyiPyPython& other)
 {
-    return ApyiPy_Int();
+    PyObject* resultant = PyNumber_FloorDivide(selfPy, other.GetPySelf());
+    return ApyiPy_Int(resultant);
 }
 
 ApyiPy_Int ApyiPy_Int::operator/(const long& other)
 {
-    return ApyiPy_Int();
+    PyObject* tempLong = PyLong_FromLong(other);
+    PyObject* resultant = PyNumber_FloorDivide(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    return ApyiPy_Int(resultant);
 }
 
 ApyiPy_Int ApyiPy_Int::operator/=(const ApyiPyPython& other)
 {
-    return ApyiPy_Int();
+    PyObject* resultant = PyNumber_FloorDivide(selfPy, other.GetPySelf());
+    return ApyiPy_Int(resultant);
 }
 
-ApyiPy_Int ApyiPy_Int::operator/=(const long&)
+ApyiPy_Int ApyiPy_Int::operator/=(const long& other)
 {
-    return ApyiPy_Int();
+    PyObject* tempLong = PyLong_FromLong(other);
+    PyObject* resultant = PyNumber_FloorDivide(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    return ApyiPy_Int(resultant);
 }
 
 long ApyiPy_Int::AsCInt() const

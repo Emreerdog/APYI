@@ -278,8 +278,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\Importer\ImportManager.cpp" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\Importer\ImportManager.h" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\Logging\Logger.h" />
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectResource\ModuleResource.cpp" />
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectResource\ObjectResource.cpp" />
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectResource\PythonDistributor.cpp" />
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectResource\ModuleResource.h" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectResource\ObjectResource.h" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectResource\PythonDistributor.h" />
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\AdvancedPythonInterface\ObjectUtils\Attachable.cpp" />

@@ -8,9 +8,9 @@ class ApyiPy_Int : public ApyiPyPython{
 public:
     ApyiPy_Int();
     ApyiPy_Int(PyObject*);
-    explicit ApyiPy_Int(long);
-    void operator=(const long&);
-    
+    ApyiPy_Int(const long&);
+    ApyiPy_Int(const ApyiPy_Int&);
+
     ApyiPy_Int operator+(const ApyiPyPython&);
     ApyiPy_Int operator+(const long&);
     ApyiPy_Int operator+=(const ApyiPyPython&);

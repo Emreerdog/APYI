@@ -1,14 +1,13 @@
 import json
-import myModule
+import spam
 
-# some JSON:
-x =  '{ "name":"John", "age":30, "city":"New York"}'
+def printAll():
+    x = "selamlar"
+    print(x)
 
-# parse x:
-y = json.loads(x)
-
-# the result is a Python dictionary:
-print(y["age"])
-myModule.shit()
+def selamshit():
+    cvt = spam.system3("dir", 12, printAll)
+    print(hellboy)
+    
 
 

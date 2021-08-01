@@ -13,6 +13,14 @@ ApyiPyString::ApyiPyString(const std::string& rhs)
     m_callData.TypeName = "String";
 }
 
+ApyiPyString& ApyiPyString::operator=(const std::string& rhs)
+{
+    Py_CLEAR(selfPy);
+    selfPy = PyUnicode_FromString(rhs.c_str());
+    m_callData.ObjectSize = PyUnicode_GET_LENGTH(selfPy);
+    return *this;
+}
+
 unsigned int ApyiPyString::GetLength()
 {
     return PyUnicode_GET_LENGTH(selfPy);

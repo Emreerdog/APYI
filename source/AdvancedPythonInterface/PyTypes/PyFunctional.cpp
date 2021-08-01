@@ -4,7 +4,29 @@
 
 ApyiPy_Function::ApyiPy_Function()
 {
-    FunctionGlobals = nullptr;
+    
+}
+
+ApyiPy_Function::ApyiPy_Function(const ApyiPy_Function& other)
+{
+    selfPy = other.selfPy;
+    selfName = other.selfName;
+    FunctionGlobals = other.FunctionGlobals;
+}
+
+ApyiPy_Function::~ApyiPy_Function()
+{
+    
+}
+
+PyObject* ApyiPy_Function::operator()()
+{
+    PyObject* returnVal = PyObject_CallNoArgs(selfPy);
+    if(returnVal == NULL)
+    {
+        return nullptr;
+    }
+    return returnVal;
 }
 
 PyObject* ApyiPy_Function::CallFunc()
@@ -23,18 +45,13 @@ PyObject* ApyiPy_Function::CallOneArg(ApyiPyPython* arg)
     return PyObject_CallOneArg(selfPy, argSelf);
 }
 
-ApyiDict* ApyiPy_Function::GetFunctionDict()
+ApyiDict& ApyiPy_Function::GetFunctionDict()
 {
-    if(FunctionGlobals == NULL)
-    {
-        FunctionGlobals->SetPySelf(PyFunction_GetGlobals(selfPy));
-    }
     return FunctionGlobals;
 }
 
-void ApyiPy_Function::SetFunctionDict(ApyiDict* newDict)
+void ApyiPy_Function::SetFunctionDict(const ApyiDict& newDict)
 {
-    Py_CLEAR(FunctionGlobals);
     FunctionGlobals = newDict;
 }
 
@@ -50,7 +67,7 @@ PyObject* ApyiPy_Function::CallArgs(ApyiPy_Tuple* fArguments)
 
 void ApyiPy_Function::AddGlobal(const std::string& key, ApyiPyPython* targetGlobal)
 {
-    FunctionGlobals->SetItem(key, targetGlobal);
+    FunctionGlobals.SetItem(key, targetGlobal);
 }
 
 

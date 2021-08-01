@@ -6,8 +6,9 @@
 class ApyiDict : public ApyiPyPython{
 public:
     ApyiDict();
+    ApyiDict(const ApyiDict&);
     ApyiDict(bool);
-    void ClearDict();
+    ~ApyiDict();
     int IsContains(const std::string&, ApyiPyPython*);
     int SetItem(const std::string&, ApyiPyPython*);
     int RemoveItem(const std::string&);
@@ -16,6 +17,7 @@ public:
     PyObject* GetItemList();
 
 private:
+    void ClearDict();
     PyObject* itemList;
 };
 

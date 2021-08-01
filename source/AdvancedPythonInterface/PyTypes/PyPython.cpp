@@ -1,13 +1,18 @@
 #include <AdvancedPythonInterface/PyTypes/PyPython.h>
+#include <iostream>
 
 ApyiPyPython::ApyiPyPython()
 {
     selfPy = nullptr;
+    EPF = ApyiPyFlag::APYI_RELEASE;
 }
 
 ApyiPyPython::~ApyiPyPython()
 {
-    Py_CLEAR(selfPy);
+    if(EPF == ApyiPyFlag::APYI_RELEASE)
+    {
+        Py_CLEAR(selfPy);
+    }
 }
 
 PApyiCallData ApyiPyPython::GetCallData() const {
@@ -37,6 +42,11 @@ std::string ApyiPyPython::GetPyName(){
 void ApyiPyPython::SetPyName(const std::string& targetName)
 {
     selfName = targetName;
+}
+
+void ApyiPyPython::SetPyFlag(const ApyiPyFlag& epf)
+{
+    EPF = epf;
 }
 
 void ApyiPyPython::IncreaseReference()
