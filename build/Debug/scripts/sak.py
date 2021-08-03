@@ -1,13 +1,17 @@
 import json
+import selamke
 import spam
 
-def printAll():
-    x = "selamlar"
-    print(x)
+def wow():
+    uu = "asdasd"
 
-def selamshit():
-    cvt = spam.system3("dir", 12, printAll)
-    print(hellboy)
+def selamshit(a, b):
+    cvt = spam.system3("dir", 12)
+    y = selamke.hello()
+    
+    print(a, b)
+    print(y)
+    print(cvt)
     
 
 

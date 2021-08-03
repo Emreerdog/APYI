@@ -76,7 +76,7 @@ PyObject* ApyiDict::GetItem(const std::string& key)
         // Write exception Code...
         return nullptr;
     }
-
+    
     return tempItem;
 }
 

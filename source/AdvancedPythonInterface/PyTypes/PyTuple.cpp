@@ -11,7 +11,7 @@ ApyiPy_Tuple::ApyiPy_Tuple(size_t givenSize)
 {
     tupleSize = givenSize;
     tupleIndex = 0;
-    selfPy = PyTuple_New(givenSize);
+    selfPy = PyTuple_New(tupleSize);
 }
 
 void ApyiPy_Tuple::AddItem(ApyiPyPython* givenItem)

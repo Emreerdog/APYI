@@ -2,12 +2,18 @@
 #include <iostream>
 #include <algorithm>
 
+PyMODINIT_FUNC ModuleInitCallback(void)
+{
+    PyModuleDef& currentModule = ApyiModuleResource::GetInstance().BringNext();
+    return PyModule_Create(&currentModule);
+}
+
 ApyiModuleResource::ApyiModuleResource()
 {
     MethodCapacity = 5;
 }
 
-void ApyiModuleResource::CreateFunction(const std::string& targetModule, const char* methodName, methodPtr mpr)
+void ApyiModuleResource::CreateFunction(const char* targetModule, const char* methodName, methodPtr mpr)
 {
     if(moduleMethodMap.find(targetModule) == moduleMethodMap.end())
     {
@@ -38,7 +44,7 @@ void ApyiModuleResource::CreateFunction(const std::string& targetModule, const c
     //createdMethods[customMethodCount] = {methodName.c_str(), mpr, METH_VARARGS, NULL};
 }
 
-void ApyiModuleResource::RandomShit()
+void ApyiModuleResource::MapModules()
 {
     if(moduleMethodMap.size() == 0)
     {
@@ -49,10 +55,24 @@ void ApyiModuleResource::RandomShit()
         MethodStructure &MS = iter.second;
         PyMethodDef* workMethod = MS.m_method;
         workMethod[MS.currentIndex] = {NULL, NULL, 0, NULL};
-        modName = iter.first;
-        std::cout << MS.methName << std::endl;
-        std::cout << workMethod->ml_name << std::endl;
-        createdModules.push_back({PyModuleDef_HEAD_INIT, modName.c_str(), "ss", -1, workMethod});
+        const char* modName = iter.first;
+        //std::cout << MS.methName << std::endl;
+        //std::cout << workMethod->ml_name << std::endl;
+        //std::cout << modName.c_str() << std::endl;
+        
+        createdModules.push_back({PyModuleDef_HEAD_INIT, modName, "ss", -1, workMethod});
+    }
+}
+
+void ApyiModuleResource::RegisterAll()
+{
+    MapModules();
+    for(int i = 0; i < createdModules.size(); i++)
+    {
+        //const char* mm_name = createdModules[i].m_name;
+        //std::cout << mm_name << std::endl;
+        const char* mm_name = createdModules[i].m_name;
+        PyImport_AppendInittab(mm_name, ModuleInitCallback);
     }
 }
 
@@ -65,7 +85,6 @@ PyModuleDef& ApyiModuleResource::BringNext()
 {
     static int mIndex = -1;
     mIndex++;
-    std::cout << mIndex << std::endl;
     return createdModules[mIndex];
     
 }

@@ -6,6 +6,7 @@
 #include <AdvancedPythonInterface/PyTypes/PyFunctional.h>
 #include <AdvancedPythonInterface/PyTypes/PyString.h>
 #include <AdvancedPythonInterface/PyTypes/PyDict.h>
+#include <AdvancedPythonInterface/ObjectResource/PythonDistributor.h>
 #include <AdvancedPythonInterface/PyTypes/PyImportObject.h>
 #include <iostream>
 
@@ -34,29 +35,27 @@ void ApyiConfig::ApplyConfig()
 void ApyiConfig::AfterInit()
 {
     ApyiImportManager& importManager = ApyiImportManager::GetInstance();
-    ApyiImportObject sharedHandlerModule = importManager.ImportModule("ctypes", false);
-    ApyiPy_Function sharedHandler = sharedHandlerModule.GetFunction("CDLL");
-    // for(int i = 0; i < configContent["sharedLibs"].size(); i++)
+    ApyiDistributor& distributor = ApyiDistributor::GetInstance();
+    ApyiImportObject* sharedHandlerModule = new ApyiImportObject(importManager.ImportModule("ctypes", false));
+    ApyiPy_Function* sharedHandler = new ApyiPy_Function(sharedHandlerModule->GetFunction("CDLL"));
+    
+    // std::vector<std::wstring> wScriptFiles = ApyiPathTraits::GetScriptFiles();
+    // for(auto n : wScriptFiles)
     // {
-    //     ApyiPyString tempStr(configContent["sharedLibs"].asCString());
-    //     sharedHandler->CallOneArg(&tempStr);
+    //     std::string convertedTypes;
+    //     ApyiStringUtils::WideToString(n, convertedTypes);
+    //     ApyiStringUtils::RemoveExtension(convertedTypes);
+        
+    //     ApyiImportObject currentModule = importManager.ImportModule(convertedTypes.c_str(), true);
+    //     if(convertedTypes == "myModule")
+    //     {
+    //         ApyiPy_Function currentFunc = currentModule.GetFunction("shit");
+    //         ApyiDict funcDict = currentFunc.GetFunctionDict();
+    //         ApyiPyString mString("helloworld");
+    //         funcDict.SetItem("Nude", &mString);
+    //         currentFunc.CallFunc();
+    //     }
     // }
-    std::vector<std::wstring> wScriptFiles = ApyiPathTraits::GetScriptFiles();
-    for(auto n : wScriptFiles)
-    {
-        std::string convertedTypes;
-        ApyiStringUtils::WideToString(n, convertedTypes);
-        ApyiStringUtils::RemoveExtension(convertedTypes);
-        ApyiImportObject currentModule = importManager.ImportModule(convertedTypes.c_str(), true);
-        if(convertedTypes == "myModule")
-        {
-            ApyiPy_Function currentFunc = currentModule.GetFunction("shit");
-            ApyiDict funcDict = currentFunc.GetFunctionDict();
-            ApyiPyString mString("helloworld");
-            funcDict.SetItem("Nude", &mString);
-            currentFunc.CallFunc();
-        }
-    }
 }
 
 Json::Value& ApyiConfig::GetJsonContent()

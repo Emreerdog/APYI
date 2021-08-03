@@ -13,56 +13,31 @@
 #include <stdlib.h>
 #include <functional>
 
-void DestructionProcess(PyObject* targetCapsule){
-    std::cout << "Capsule destructor called" << std::endl;
-}
-
 PyObject* spam_systems(PyObject* self, PyObject* args)
 {
     const char* command;
     int sts;
     int otherArg;
 
-    int *sx = new int(55);
-    void* mPtr = sx;
-    PyObject* mCapsule = PyCapsule_New(mPtr, "spam.wow", DestructionProcess);
     PyObject* other = nullptr;
     if(!PyArg_ParseTuple(args, "si|O", &command, &otherArg, &other))
         return NULL;
 
 
-    PyObject_CallNoArgs(other);
+    //PyObject_CallNoArgs(other);
     std::cout << command << otherArg << std::endl;
     // sts = system(command);
-    ApyiPy_Int a = 15;
-    std::cout << PyObject_CheckBuffer(a.GetPySelf()) << std::endl;
-    return mCapsule;
+    
+    ApyiPyString *testString = new ApyiPyString("this is good");
+    
+    return testString->GetPySelf();
 }
 
-PyMethodDef SpamMethods[6] = {
-    {"system", spam_systems, METH_VARARGS, NULL},
-    {"system3", spam_systems, METH_VARARGS, NULL},
-    {NULL, NULL, 0, NULL},
-    {NULL, NULL, 0, NULL},
-    {NULL, NULL, 0, NULL},
-    {NULL, NULL, 0, NULL}
-};
-
-PyModuleDef spammodule = {
-    PyModuleDef_HEAD_INIT,
-    "spam",
-    "Hello people",
-    -1,
-    SpamMethods
-};
-
-PyMODINIT_FUNC
-PyInit_spam(void)
+PyObject* hello_people(PyObject* self, PyObject* args)
 {
-    PyModuleDef& currentModule = ApyiModuleResource::GetInstance().BringNext();
-    std::cout << currentModule.m_name << std::endl;
-    std::cout << currentModule.m_methods << std::endl;
-    return PyModule_Create(&currentModule);
+    std::cout << "It works" << std::endl;
+    ApyiPy_Int m_int = 44;
+    return m_int.GetPySelf(); 
 }
 
 int main()
@@ -70,26 +45,31 @@ int main()
     ApyiConfig::GetInstance().LoadConfigFile("../config.json");
     ApyiConfig::GetInstance().ApplyConfig();
     ApyiModuleResource::GetInstance().CreateFunction("spam", "system3", spam_systems);
+    ApyiModuleResource::GetInstance().CreateFunction("selamke", "hello", hello_people);
+
     //ApyiModuleResource::GetInstance().CreateFunction("ffds", "myname", spam_systems);
-    ApyiModuleResource::GetInstance().RandomShit();
+    ApyiModuleResource::GetInstance().RegisterAll();
 
     
     //PyImport_AppendInittab("spam", apM.PyInit_spam);
     //PyImport_AppendInittab("spam", myTarget(&apM, &ApyiModuleContent::PyInit_spam));
     //PyImport_AppendInittab("spam", mFunc.target());
-    PyImport_AppendInittab("spam", PyInit_spam);
+    //PyImport_AppendInittab("spam", PyInit_spam);
     Py_Initialize();
-
 
     std::cout << "--------------------" << std::endl;
 
     ApyiImportObject mPort = ApyiImportManager::GetInstance().ImportModule("sak", false);
     ApyiPy_Function mFunction = mPort.GetFunction("selamshit");
     ApyiDict& mDict = mFunction.GetFunctionDict();
-    ApyiPyString mString;
-    mString = "lelel";
-    mDict.SetItem("hellboy", &mString);
-    mFunction();
+    ApyiPy_Tuple m_tuple = ApyiPy_Tuple(2);
+    ApyiPyString mString = "TEST STRING 1";
+    ApyiPyString mString2 = "TEST STRING 2";
+    m_tuple.AddItem(&mString);
+    m_tuple.AddItem(&mString2);
+
+    //mDict.SetItem("hellboy", &m_tuple);
+    mFunction(&m_tuple);
     //void* vp = PyCapsule_GetContext(result);
 
     //std::cout << result << std::endl;

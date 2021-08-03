@@ -19,15 +19,15 @@ struct MethodStructure{
 class ApyiModuleResource : public UErSingleton<ApyiModuleResource> {
 public:
     ApyiModuleResource();
-    void CreateFunction(const std::string& targetModule, const char* methodName, methodPtr mpr);
-    void RandomShit();
+    void CreateFunction(const char* targetModule, const char* methodName, methodPtr mpr);
+    void RegisterAll();
     std::vector<PyModuleDef>& GetCustomModules();
     PyModuleDef& BringNext(); // For important purposes
 private:
-    std::unordered_map<std::string, MethodStructure> moduleMethodMap;
+    void MapModules();
+    std::unordered_map<const char*, MethodStructure> moduleMethodMap;
     std::vector<PyModuleDef> createdModules;
     unsigned int MethodCapacity;
-    std::string modName;
 };
 
 #endif /* APYI_MODULERESOURCES_H */

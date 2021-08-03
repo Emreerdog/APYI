@@ -3,9 +3,9 @@
 #include <AdvancedPythonInterface/PyTypes/PyImportObject.h>
 #include <AdvancedPythonInterface/PyTypes/PyDict.h>
 
-ApyiPy_Function* ApyiDistributor::RequestFunction(const std::string& fName)
+ApyiPy_Function* ApyiDistributor::RequestFunction(const char* fName)
 {
-    auto resultant = DistributedFunctions.find(fName.c_str());
+    auto resultant = DistributedFunctions.find(fName);
     if(resultant != DistributedFunctions.end())
     {
         return resultant->second;
@@ -14,9 +14,9 @@ ApyiPy_Function* ApyiDistributor::RequestFunction(const std::string& fName)
     return nullptr; // Not found
 }
 
-ApyiDict* ApyiDistributor::RequestDict(const std::string& dName)
+ApyiDict* ApyiDistributor::RequestDict(const char* dName)
 {
-    auto resultant = DistributedDicts.find(dName.c_str());
+    auto resultant = DistributedDicts.find(dName);
     if(resultant != DistributedDicts.end())
     {
         return resultant->second;
@@ -25,9 +25,9 @@ ApyiDict* ApyiDistributor::RequestDict(const std::string& dName)
     return nullptr; // Not found
 }
 
-ApyiImportObject* ApyiDistributor::RequestModule(const std::string& mName)
+ApyiImportObject* ApyiDistributor::RequestModule(const char* mName)
 {
-    auto resultant = DistributedImports.find(mName.c_str());
+    auto resultant = DistributedImports.find(mName);
     if(resultant != DistributedImports.end())
     {
         return resultant->second;
@@ -56,9 +56,9 @@ void ApyiDistributor::ReserveShared(ApyiPy_Function* sName)
     SharedFunctions[sName->GetPyName().c_str()] = sName;
 }
 
-ApyiPy_Function* ApyiDistributor::GetSharedFunction(const std::string& target)
+ApyiPy_Function* ApyiDistributor::GetSharedFunction(const char* target)
 {
-    auto resultant = SharedFunctions.find(target.c_str());
+    auto resultant = SharedFunctions.find(target);
     if(resultant != SharedFunctions.end())
     {
         return resultant->second;

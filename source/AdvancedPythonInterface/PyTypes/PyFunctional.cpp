@@ -22,9 +22,29 @@ ApyiPy_Function::~ApyiPy_Function()
 PyObject* ApyiPy_Function::operator()()
 {
     PyObject* returnVal = PyObject_CallNoArgs(selfPy);
+    if(PyErr_Occurred())
+    {
+        PyErr_Print();
+    }
     if(returnVal == NULL)
     {
         return nullptr;
+    }
+    return returnVal;
+}
+
+PyObject* ApyiPy_Function::operator()(ApyiPyPython* arg)
+{
+    PyObject* argSelf = arg->GetPySelf();
+    return PyObject_CallOneArg(selfPy, argSelf);
+}
+
+PyObject* ApyiPy_Function::operator()(ApyiPy_Tuple* args)
+{
+    PyObject* returnVal = PyObject_CallObject(selfPy, args->GetPySelf());
+    if(PyErr_Occurred())
+    {
+        PyErr_Print();
     }
     return returnVal;
 }

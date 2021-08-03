@@ -12,6 +12,9 @@ public:
     ApyiPy_Function(const ApyiPy_Function&);
     ~ApyiPy_Function();
     PyObject* operator()();
+    PyObject* operator()(ApyiPyPython*);
+    PyObject* operator()(ApyiPy_Tuple*);
+
     PyObject* CallFunc();
     PyObject* CallOneArg(ApyiPyPython*);
     PyObject* CallArgs(ApyiPy_Tuple*);
