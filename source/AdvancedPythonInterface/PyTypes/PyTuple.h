@@ -8,6 +8,8 @@
 class ApyiPy_Tuple : public ApyiPyPython{
 public:
     ApyiPy_Tuple();
+    ApyiPy_Tuple(PyObject*);
+    ApyiPy_Tuple(const ApyiPy_Tuple&);
     explicit ApyiPy_Tuple(size_t);
     void AddItem(ApyiPyPython*);
     void SetItem(int, ApyiPyPython*);

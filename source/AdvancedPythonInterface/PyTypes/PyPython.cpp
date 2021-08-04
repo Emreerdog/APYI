@@ -28,7 +28,7 @@ PyObject* ApyiPyPython::GetPySelf() const{
     return selfPy;
 }
 
-void* ApyiPyPython::Convert_C(){
+void* ApyiPyPython::RawData(){
     return nullptr;
 }
 

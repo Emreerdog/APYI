@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/emree/Desktop/Err/APYI/source
+# Install script for directory: C:/Users/NP/Desktop/MustafaDosyalar/APYI/source
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -13,5 +13,8 @@ def selamshit(a, b):
     print(y)
     print(cvt)
     
-
+def listVals(val1, val2, val3):
+    print(val1)
+    print(val2)
+    print(val3)
 

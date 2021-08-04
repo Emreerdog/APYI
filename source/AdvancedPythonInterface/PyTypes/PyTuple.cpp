@@ -7,6 +7,20 @@ ApyiPy_Tuple::ApyiPy_Tuple()
     selfPy = PyTuple_New(tupleSize + 1);
 }
 
+ApyiPy_Tuple::ApyiPy_Tuple(PyObject* other)
+{
+    selfPy = other;
+    tupleSize = GetSize();
+    tupleIndex = tupleSize;
+}
+
+ApyiPy_Tuple::ApyiPy_Tuple(const ApyiPy_Tuple& rhs)
+{
+    tupleSize = rhs.tupleSize;
+    tupleIndex = rhs.tupleIndex;
+    selfPy = rhs.selfPy;
+}
+
 ApyiPy_Tuple::ApyiPy_Tuple(size_t givenSize)
 {
     tupleSize = givenSize;

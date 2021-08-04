@@ -5,6 +5,11 @@ ApyiDict::ApyiDict()
     selfPy = PyDict_New();
 }
 
+ApyiDict::ApyiDict(PyObject* other)
+{
+    selfPy = other;
+}
+
 ApyiDict::ApyiDict(const ApyiDict& other)
 {
     selfPy = other.selfPy;

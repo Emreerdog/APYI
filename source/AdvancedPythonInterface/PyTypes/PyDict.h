@@ -6,6 +6,7 @@
 class ApyiDict : public ApyiPyPython{
 public:
     ApyiDict();
+    ApyiDict(PyObject*);
     ApyiDict(const ApyiDict&);
     ApyiDict(bool);
     ~ApyiDict();

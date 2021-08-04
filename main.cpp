@@ -40,6 +40,11 @@ PyObject* hello_people(PyObject* self, PyObject* args)
     return m_int.GetPySelf(); 
 }
 
+void DestroyCapsule(PyObject* Cap)
+{
+
+}
+
 int main()
 {
     ApyiConfig::GetInstance().LoadConfigFile("../config.json");
@@ -49,27 +54,37 @@ int main()
 
     //ApyiModuleResource::GetInstance().CreateFunction("ffds", "myname", spam_systems);
     ApyiModuleResource::GetInstance().RegisterAll();
-
     
-    //PyImport_AppendInittab("spam", apM.PyInit_spam);
-    //PyImport_AppendInittab("spam", myTarget(&apM, &ApyiModuleContent::PyInit_spam));
-    //PyImport_AppendInittab("spam", mFunc.target());
-    //PyImport_AppendInittab("spam", PyInit_spam);
     Py_Initialize();
+
+    ApyiImportManager& iMng = ApyiImportManager::GetInstance();
+    ApyiImportObject resultImport = iMng.ImportModule("sak", true);
+    ApyiPy_Function requestedFunction = resultImport.GetFunction("listVals");
+
 
     std::cout << "--------------------" << std::endl;
 
-    ApyiImportObject mPort = ApyiImportManager::GetInstance().ImportModule("sak", false);
-    ApyiPy_Function mFunction = mPort.GetFunction("selamshit");
-    ApyiDict& mDict = mFunction.GetFunctionDict();
-    ApyiPy_Tuple m_tuple = ApyiPy_Tuple(2);
-    ApyiPyString mString = "TEST STRING 1";
-    ApyiPyString mString2 = "TEST STRING 2";
-    m_tuple.AddItem(&mString);
-    m_tuple.AddItem(&mString2);
+    ApyiPyString m_string = "Hello world";
+    ApyiPy_Int mVal = 43;
+    ApyiPyString m_string2 = "lol";
+    ApyiPy_Tuple funcArgs = ApyiPy_Tuple(3);
+    funcArgs.AddItem(&m_string);
+    funcArgs.AddItem(&mVal);
+    funcArgs.AddItem(&m_string2);
 
+    std::string *testVal = new std::string("lelel");
+    void* raw = testVal;
+    
+
+    PyObject* myCapsule = PyCapsule_New(raw, "test_capsule", DestroyCapsule);
+    void* cContext =  PyCapsule_GetPointer(myCapsule, "test_capsule");
+    std::string* testVal2 = (std::string*)(cContext);
+    std::cout << *testVal2 << std::endl;
+    requestedFunction(&funcArgs);
+    //std::cout << resultString << std::endl;
+    //std::cout << m_string << std::endl;
     //mDict.SetItem("hellboy", &m_tuple);
-    mFunction(&m_tuple);
+    //mFunction(&m_tuple);
     //void* vp = PyCapsule_GetContext(result);
 
     //std::cout << result << std::endl;

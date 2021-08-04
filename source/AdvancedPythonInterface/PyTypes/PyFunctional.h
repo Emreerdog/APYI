@@ -9,11 +9,11 @@ class ApyiPy_Tuple;
 class ApyiPy_Function : public ApyiPyPython{
 public:
     ApyiPy_Function();
+    ApyiPy_Function(PyObject*);
     ApyiPy_Function(const ApyiPy_Function&);
     ~ApyiPy_Function();
     PyObject* operator()();
     PyObject* operator()(ApyiPyPython*);
-    PyObject* operator()(ApyiPy_Tuple*);
 
     PyObject* CallFunc();
     PyObject* CallOneArg(ApyiPyPython*);

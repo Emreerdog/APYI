@@ -7,6 +7,11 @@ ApyiPy_Function::ApyiPy_Function()
     
 }
 
+ApyiPy_Function::ApyiPy_Function(PyObject* other)
+{
+    selfPy = other;
+}
+
 ApyiPy_Function::ApyiPy_Function(const ApyiPy_Function& other)
 {
     selfPy = other.selfPy;
@@ -36,17 +41,11 @@ PyObject* ApyiPy_Function::operator()()
 PyObject* ApyiPy_Function::operator()(ApyiPyPython* arg)
 {
     PyObject* argSelf = arg->GetPySelf();
-    return PyObject_CallOneArg(selfPy, argSelf);
-}
-
-PyObject* ApyiPy_Function::operator()(ApyiPy_Tuple* args)
-{
-    PyObject* returnVal = PyObject_CallObject(selfPy, args->GetPySelf());
-    if(PyErr_Occurred())
+    if(PyTuple_Check(argSelf))
     {
-        PyErr_Print();
+        return PyObject_CallObject(selfPy, argSelf);
     }
-    return returnVal;
+    return PyObject_CallOneArg(selfPy, argSelf);
 }
 
 PyObject* ApyiPy_Function::CallFunc()
