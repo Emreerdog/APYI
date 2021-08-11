@@ -28,17 +28,17 @@ bool ApyiFileSystem::ErCreateDirectory(const char* directoryName)
     switch (GetLastError()) {
     case ERROR_ALREADY_EXISTS:
     {
-        ER_LOG(ApyiLogging::kError, "Directory couldn't created reason(Already Exists): %s", directoryName);
+        APYI_LOG(ApyiLogging::APYI_OUT_FILE, ApyiLogging::kError, "Directory couldn't created reason(Already Exists): %s", directoryName);
         return ERROR_ALREADY_EXISTS;
     }
     case ERROR_PATH_NOT_FOUND:
     {
-        ER_LOG(ApyiLogging::kError, "Directory couldn't created reason(Path Not Found): %s", directoryName);
+        APYI_LOG(ApyiLogging::APYI_OUT_FILE, ApyiLogging::kError, "Directory couldn't created reason(Path Not Found): %s", directoryName);
         return ERROR_PATH_NOT_FOUND;
     }
     default:
     {
-        ER_LOG(ApyiLogging::kError, "Directory created successfully %s", directoryName);
+        APYI_LOG(ApyiLogging::APYI_OUT_FILE, ApyiLogging::kError, "Directory created successfully %s", directoryName);
         return 0;
     }
     }
@@ -47,11 +47,11 @@ bool ApyiFileSystem::ErCreateDirectory(const char* directoryName)
     if(!resultCheck)
     {
         // Directory created
-        ER_LOG(ApyiLogging::kError, "Directory created successfully %s", directoryName);
+        APYI_LOG(ApyiLogging::APYI_OUT_FILE, ApyiLogging::kError, "Directory created successfully %s", directoryName);
     }
     else{
         // Failed to create directory
-        ER_LOG(ApyiLogging::kError, "Directory couldn't created %s", directoryName);
+        APYI_LOG(ApyiLogging::APYI_OUT_FILE, ApyiLogging::kError, "Directory couldn't created %s", directoryName);
     }
     return resultCheck;
 #endif
@@ -64,12 +64,12 @@ bool ApyiFileSystem::ErRemoveFile(const char* fileName)
     switch (GetLastError()) {
     case ERROR_FILE_NOT_FOUND:
     {
-        ER_LOG(ApyiLogging::kError, "File couldn't removed reason(File not found): %s", fileName);
+        APYI_LOG(ApyiLogging::APYI_OUT_FILE, ApyiLogging::kError, "File couldn't removed reason(File not found): %s", fileName);
         return ERROR_FILE_NOT_FOUND;
     }
     case ERROR_ACCESS_DENIED:
     {
-        ER_LOG(ApyiLogging::kError, "File couldn't removed reason(File access denied): %s", fileName);
+        APYI_LOG(ApyiLogging::APYI_OUT_FILE, ApyiLogging::kError, "File couldn't removed reason(File access denied): %s", fileName);
         return ERROR_ACCESS_DENIED;
     }
     default:
@@ -86,7 +86,7 @@ bool ApyiFileSystem::ErRemoveFile(const char* fileName)
     }
     else
     {
-        ER_LOG(ApyiLogging::kError, "File couldn't removed %s", fileName);
+        APYI_LOG(ApyiLogging::APYI_OUT_FILE, ApyiLogging::kError, "File couldn't removed %s", fileName);
     }
     return resultCheck;
 #endif
@@ -152,7 +152,7 @@ void ApyiFileSystem::ErReadFile(const char* fileName, std::string& out)
         out = fileContent;
     }
     else{
-        ER_LOG(ApyiLogging::kError, "File couldn't found: %s", fileName);
+        APYI_LOG(ApyiLogging::APYI_OUT_FILE, ApyiLogging::kError, "File couldn't found: %s", fileName);
     }
 }
 

@@ -11,9 +11,8 @@ public:
     ApyiImportObject();
     ApyiImportObject(const ApyiImportObject&);
     ~ApyiImportObject();
-    ApyiPy_Function GetFunction(const std::string& funcName);
-    ApyiDict* GetDict();
-    ApyiPyPython* GetVariable(const std::string& varName);
+    ApyiPy_Function *GetFunction(const char* funcName);
+    PyObject* GetAttribute(const char* varName);
 private:
 };
 

@@ -28,7 +28,7 @@ public:
     virtual void SetPyFlag(const ApyiPyFlag&) = 0;
     virtual void IncreaseReference() = 0;
     virtual void DecreaseReference() = 0;
-
+    
 protected:
     PApyiCallData m_callData;
     PyObject* selfPy;

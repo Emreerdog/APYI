@@ -1,16 +1,18 @@
 #include <AdvancedPythonInterface/ObjectResource/ModuleResource.h>
+#include <AdvancedPythonInterface/Importer/ImportManager.h>
 #include <iostream>
 #include <algorithm>
 
 PyMODINIT_FUNC ModuleInitCallback(void)
 {
     PyModuleDef& currentModule = ApyiModuleResource::GetInstance().BringNext();
+    std::cout << "Module imported" << std::endl;
     return PyModule_Create(&currentModule);
 }
 
 ApyiModuleResource::ApyiModuleResource()
 {
-    MethodCapacity = 5;
+    
 }
 
 void ApyiModuleResource::CreateFunction(const char* targetModule, const char* methodName, methodPtr mpr)
@@ -18,14 +20,15 @@ void ApyiModuleResource::CreateFunction(const char* targetModule, const char* me
     if(moduleMethodMap.find(targetModule) == moduleMethodMap.end())
     {
         // Not found
-        PyMethodDef* methodPool = (PyMethodDef*)malloc(sizeof(PyMethodDef) * MethodCapacity);
+        PyMethodDef* methodPool = (PyMethodDef*)malloc(sizeof(PyMethodDef) * APYI_MMETHOD_COUNT);
         unsigned int _currentIndex = 0;
         MethodStructure MS = {methodPool, _currentIndex};
         MS.methName = methodName;
         MS.currentIndex = _currentIndex;
-        MS.resizeVal = MethodCapacity;
+        MS.resizeVal = APYI_MMETHOD_COUNT;
         methodPool[_currentIndex] = { methodName, mpr, METH_VARARGS, NULL };
         MS.currentIndex++;
+        
         moduleMethodMap.insert(std::make_pair(targetModule, MS));
         return;
     }
@@ -34,7 +37,7 @@ void ApyiModuleResource::CreateFunction(const char* targetModule, const char* me
     PyMethodDef* methodPool = MS.m_method;
     if(MS.currentIndex == MS.resizeVal)
     {
-        MS.resizeVal += MethodCapacity;
+        MS.resizeVal += APYI_MMETHOD_COUNT;
         methodPool = (PyMethodDef*)realloc(methodPool, MS.resizeVal);
     }
     MS.methName = methodName;
@@ -73,6 +76,15 @@ void ApyiModuleResource::RegisterAll()
         //std::cout << mm_name << std::endl;
         const char* mm_name = createdModules[i].m_name;
         PyImport_AppendInittab(mm_name, ModuleInitCallback);
+    }
+}
+
+void ApyiModuleResource::InitializeAll()
+{
+    for(auto eachModule : moduleMethodMap)
+    {
+        ApyiImportObject* mportObj = ApyiImportManager::GetInstance().ImportModule(eachModule.first, false);
+        delete mportObj;
     }
 }
 

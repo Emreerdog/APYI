@@ -42,16 +42,16 @@ void ApyiDict::ClearDict()
     }
 }
 
-int ApyiDict::IsContains(const std::string& key, ApyiPyPython* value)
+int ApyiDict::IsContains(const char* key, ApyiPyPython* value)
 {
-    PyObject* _key = PyUnicode_FromString(key.c_str());
+    PyObject* _key = PyUnicode_FromString(key);
     int result = PyDict_Contains(selfPy, _key);
     Py_CLEAR(_key);
 
     return result;
 }
 
-int ApyiDict::SetItem(const std::string& key, ApyiPyPython* value)
+int ApyiDict::SetItem(const char* key, ApyiPyPython* value)
 {
     if(value->GetPySelf() == NULL || value == NULL)
     {
@@ -62,17 +62,17 @@ int ApyiDict::SetItem(const std::string& key, ApyiPyPython* value)
         return -1;
     }
 
-    return PyDict_SetItemString(selfPy, key.c_str(), value->GetPySelf());
+    return PyDict_SetItemString(selfPy, key, value->GetPySelf());
 }
 
-int ApyiDict::RemoveItem(const std::string& key)
+int ApyiDict::RemoveItem(const char* key)
 {
-    return PyDict_DelItemString(selfPy, key.c_str());
+    return PyDict_DelItemString(selfPy, key);
 }
 
-PyObject* ApyiDict::GetItem(const std::string& key)
+PyObject* ApyiDict::GetItem(const char* key)
 {
-    PyObject* tempItem = PyDict_GetItemString(selfPy, key.c_str());
+    PyObject* tempItem = PyDict_GetItemString(selfPy, key);
     if(tempItem == NULL)
     {
         // TODO
@@ -85,9 +85,10 @@ PyObject* ApyiDict::GetItem(const std::string& key)
     return tempItem;
 }
 
-void ApyiDict::GetItemAsString(const std::string& key, std::string& out)
+void ApyiDict::GetItemAsString(const char* key, std::string& out)
 {
-    PyObject* itemString = PyDict_GetItemString(selfPy, key.c_str()); // Borrowed
+    PyObject* itemString = PyDict_GetItemString(selfPy, key); // Borrowed
+    
     PyObject* encodedStr = PyUnicode_AsEncodedString(itemString, "UTF-8", "strict");
     out = PyBytes_AS_STRING(encodedStr);
     Py_CLEAR(encodedStr);

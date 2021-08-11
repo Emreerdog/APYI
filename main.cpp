@@ -9,7 +9,9 @@
 #include <AdvancedPythonInterface/Configurator/Config.h>
 #include <AdvancedPythonInterface/ObjectUtils/StringUtils.h>
 #include <AdvancedPythonInterface/ObjectResource/ModuleResource.h>
-#include <iostream>
+#include <AdvancedPythonInterface/Logging/Logger.h>
+#include <AdvancedPythonInterface/FileSystem/FileSystem.h>
+#include <AdvancedPythonInterface/FileSystem/PathTraits.h>
 #include <stdlib.h>
 #include <functional>
 
@@ -56,39 +58,31 @@ int main()
     ApyiModuleResource::GetInstance().RegisterAll();
     
     Py_Initialize();
+    ApyiModuleResource::GetInstance().InitializeAll();
+    ApyiImportObject* mPort = ApyiImportManager::GetInstance().ImportModule("sak", false);
+    ApyiPy_Function* importedFunction = mPort->GetFunction("selamshit");
+    importedFunction->Call();
+    ApyiImportManager::GetInstance().ImportModule("sak", false);
+    ApyiImportManager::GetInstance().ImportModule("myModule", false);
 
-    ApyiImportManager& iMng = ApyiImportManager::GetInstance();
-    ApyiImportObject resultImport = iMng.ImportModule("sak", true);
-    ApyiPy_Function requestedFunction = resultImport.GetFunction("listVals");
-
-
-    std::cout << "--------------------" << std::endl;
-
-    ApyiPyString m_string = "Hello world";
-    ApyiPy_Int mVal = 43;
-    ApyiPyString m_string2 = "lol";
-    ApyiPy_Tuple funcArgs = ApyiPy_Tuple(3);
-    funcArgs.AddItem(&m_string);
-    funcArgs.AddItem(&mVal);
-    funcArgs.AddItem(&m_string2);
-
-    std::string *testVal = new std::string("lelel");
-    void* raw = testVal;
     
-
-    PyObject* myCapsule = PyCapsule_New(raw, "test_capsule", DestroyCapsule);
-    void* cContext =  PyCapsule_GetPointer(myCapsule, "test_capsule");
-    std::string* testVal2 = (std::string*)(cContext);
-    std::cout << *testVal2 << std::endl;
-    requestedFunction(&funcArgs);
-    //std::cout << resultString << std::endl;
-    //std::cout << m_string << std::endl;
-    //mDict.SetItem("hellboy", &m_tuple);
-    //mFunction(&m_tuple);
-    //void* vp = PyCapsule_GetContext(result);
-
-    //std::cout << result << std::endl;
-    //ApyiConfig::GetInstance().AfterInit();
+    //ApyiFileSystem::ErCreateDirectory("ezgininKlasor");
+    //ApyiPathTraits::EGetCurrentDir();
+    // while(1)
+    // {
+    //     ApyiPy_Tuple mTuple = ApyiPy_Tuple(3);
+    //     ApyiPyString checkStr = "Hello world";
+    //     ApyiPyString checkStr2 = "hello everyone";
+    //     ApyiPyString checkStr3 = "Hello life";
+    //     mTuple.AddItem(&checkStr);
+    //     mTuple.AddItem(&checkStr2);
+    //     mTuple.AddItem(&checkStr3);
+    //     importedFunction->Call(&mTuple);
+    //     std::cout << checkStr << std::endl;
+    //     std::cout << checkStr2 << std::endl;
+    //     std::cout << checkStr3 << std::endl;
+        
+    // }
 
     Py_FinalizeEx();
     getchar();

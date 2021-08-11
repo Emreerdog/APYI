@@ -12,18 +12,21 @@ public:
     ApyiPy_Function(PyObject*);
     ApyiPy_Function(const ApyiPy_Function&);
     ~ApyiPy_Function();
-    PyObject* operator()();
-    PyObject* operator()(ApyiPyPython*);
+    //PyObject* operator()();
+    //PyObject* operator()(ApyiPyPython*);
 
-    PyObject* CallFunc();
-    PyObject* CallOneArg(ApyiPyPython*);
-    PyObject* CallArgs(ApyiPy_Tuple*);
-    ApyiDict& GetFunctionDict();
-    void SetFunctionDict(const ApyiDict&);
-    void AddGlobal(const std::string& , ApyiPyPython*);
+    PyObject* Call();
+    PyObject* Call(ApyiPyPython*);
+    ApyiDict* GetFunctionDict();
+    void SetFunctionDict(ApyiDict*);
+    void AddGlobal(const char*, ApyiPyPython*);
+    void PushOnStack(ApyiPyPython*);
     // a
 private:
-    ApyiDict FunctionGlobals;
+    bool closureModified;
+    ApyiDict *FunctionGlobals;
+    ApyiPy_Tuple *FunctionClosure;
+    //PyObject* FCELL;
 };
 
 #endif /* PYFUNCTIONAL_H */

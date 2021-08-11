@@ -34,10 +34,10 @@ void ApyiConfig::ApplyConfig()
 
 void ApyiConfig::AfterInit()
 {
-    ApyiImportManager& importManager = ApyiImportManager::GetInstance();
-    ApyiDistributor& distributor = ApyiDistributor::GetInstance();
-    ApyiImportObject* sharedHandlerModule = new ApyiImportObject(importManager.ImportModule("ctypes", false));
-    ApyiPy_Function* sharedHandler = new ApyiPy_Function(sharedHandlerModule->GetFunction("CDLL"));
+    // ApyiImportManager& importManager = ApyiImportManager::GetInstance();
+    // ApyiDistributor& distributor = ApyiDistributor::GetInstance();
+    // ApyiImportObject* sharedHandlerModule = new ApyiImportObject(importManager.ImportModule("ctypes", false));
+    // ApyiPy_Function* sharedHandler = new ApyiPy_Function(sharedHandlerModule->GetFunction("CDLL"));
     
     // std::vector<std::wstring> wScriptFiles = ApyiPathTraits::GetScriptFiles();
     // for(auto n : wScriptFiles)

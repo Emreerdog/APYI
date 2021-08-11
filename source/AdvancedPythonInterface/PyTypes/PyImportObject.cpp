@@ -1,6 +1,8 @@
 #include <AdvancedPythonInterface/PyTypes/PyImportObject.h>
 #include <AdvancedPythonInterface/PyTypes/PyFunctional.h>
+#include <AdvancedPythonInterface/Logging/Logger.h>
 #include <AdvancedPythonInterface/PyTypes/PyDict.h>
+#include <iostream>
 
 ApyiImportObject::ApyiImportObject()
 {
@@ -18,45 +20,42 @@ ApyiImportObject::~ApyiImportObject()
     Py_CLEAR(selfPy);
 }
 
-ApyiPy_Function ApyiImportObject::GetFunction(const std::string& funcName)
+ApyiPy_Function* ApyiImportObject::GetFunction(const char* funcName)
 {
-    const char* _funcName = funcName.c_str();
-    PyObject* requestedFunction = PyObject_GetAttrString(selfPy, _funcName);
+    PyObject* requestedFunction = PyObject_GetAttrString(selfPy, funcName);
     if(requestedFunction == NULL)
     {
         // Given symbol doesn't exist
         // TODO
         // Give reasonable info
-
-        return ApyiPy_Function();
+        PyErr_Print();
+        return nullptr;
     }
 
-    if(PyFunction_Check(requestedFunction) == NULL)
+    if(!(PyFunction_Check(requestedFunction)) || !(PyCallable_Check(requestedFunction)))
     {
         // Given symbol is not a function
         Py_CLEAR(requestedFunction);
-        
-        return ApyiPy_Function();
+        APYI_LOG(ApyiLogging::APYI_OUT_CONSOLE, ApyiLogging::kError, "Given value %s is not a callable type", funcName);
+        std::cout << "Given Value (" << funcName << ") " << "is not a function" << std::endl;
+        return nullptr;
     }
-
-    ApyiPy_Function resultantFunc;
-    ApyiDict functionDict;
-    functionDict.SetPyFlag(ApyiPyFlag::APYI_NOT_RELEASE);
-    functionDict.SetPySelf(PyFunction_GetGlobals(requestedFunction));
-    resultantFunc.SetPySelf(requestedFunction);
-    resultantFunc.SetFunctionDict(functionDict);
-    resultantFunc.SetPyFlag(ApyiPyFlag::APYI_NOT_RELEASE);
-    resultantFunc.SetPyName(_funcName);
+    PyObject* funcDict = PyFunction_GetGlobals(requestedFunction);
+    ApyiPy_Function *resultantFunc = new ApyiPy_Function(requestedFunction);
+    ApyiDict *functionDict = new ApyiDict(funcDict);
+    resultantFunc->SetFunctionDict(functionDict);
+    resultantFunc->SetPyName(funcName);
 
     return resultantFunc;
 }
 
-ApyiDict* ApyiImportObject::GetDict()
+PyObject* ApyiImportObject::GetAttribute(const char* varName)
 {
-    return nullptr;
-}
-
-ApyiPyPython* ApyiImportObject::GetVariable(const std::string& varName)
-{
-    return nullptr;
+    PyObject* requestedAttribute = PyObject_GetAttrString(selfPy, varName);
+    if(requestedAttribute == nullptr)
+    {
+        APYI_LOG(ApyiLogging::APYI_OUT_CONSOLE, ApyiLogging::kError, "Given attribute %s is not a callable type", varName);
+        return nullptr;
+    }
+    return requestedAttribute;
 }

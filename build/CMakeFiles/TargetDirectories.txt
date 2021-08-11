@@ -1,4 +1,0 @@
-C:/Users/NP/Desktop/MustafaDosyalar/APYI/build/CMakeFiles/APYI.dir
-C:/Users/NP/Desktop/MustafaDosyalar/APYI/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/NP/Desktop/MustafaDosyalar/APYI/build/CMakeFiles/ZERO_CHECK.dir
-C:/Users/NP/Desktop/MustafaDosyalar/APYI/build/source/CMakeFiles/apyi.dir

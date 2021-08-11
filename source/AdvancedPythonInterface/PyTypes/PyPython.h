@@ -17,7 +17,7 @@ public:
     virtual void SetPyFlag(const ApyiPyFlag&) override;
     virtual void IncreaseReference() override;
     virtual void DecreaseReference() override;
-
+    
 protected:
 };
 
