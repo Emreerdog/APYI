@@ -1,17 +1,17 @@
-#include <AdvancedPythonInterface/PyTypes/PyInt.h>
-#include <AdvancedPythonInterface/PyTypes/PyTuple.h>
-#include <AdvancedPythonInterface/PyTypes/PyImportObject.h>
-#include <AdvancedPythonInterface/Importer/ImportManager.h>
-#include <AdvancedPythonInterface/PyTypes/PyFunctional.h>
-#include <AdvancedPythonInterface/PyTypes/PyString.h>
-#include <AdvancedPythonInterface/PyTypes/PyDict.h>
-#include <AdvancedPythonInterface/FileSystem/PathTraits.h>
-#include <AdvancedPythonInterface/Configurator/Config.h>
-#include <AdvancedPythonInterface/ObjectUtils/StringUtils.h>
-#include <AdvancedPythonInterface/ObjectResource/ModuleResource.h>
-#include <AdvancedPythonInterface/Logging/Logger.h>
-#include <AdvancedPythonInterface/FileSystem/FileSystem.h>
-#include <AdvancedPythonInterface/FileSystem/PathTraits.h>
+#include <APYI/PyTypes/PyInt.h>
+#include <APYI/PyTypes/PyTuple.h>
+#include <APYI/PyTypes/PyImportObject.h>
+#include <APYI/Importer/ImportManager.h>
+#include <APYI/PyTypes/PyFunctional.h>
+#include <APYI/PyTypes/PyString.h>
+#include <APYI/PyTypes/PyDict.h>
+#include <APYI/FileSystem/PathTraits.h>
+#include <APYI/Configurator/Config.h>
+#include <APYI/ObjectUtils/StringUtils.h>
+#include <APYI/ObjectResource/ModuleResource.h>
+#include <APYI/Logging/Logger.h>
+#include <APYI/FileSystem/FileSystem.h>
+#include <APYI/FileSystem/PathTraits.h>
 #include <stdlib.h>
 #include <functional>
 
@@ -30,15 +30,16 @@ PyObject* spam_systems(PyObject* self, PyObject* args)
     std::cout << command << otherArg << std::endl;
     // sts = system(command);
     
-    ApyiPyString *testString = new ApyiPyString("this is good");
-    
-    return testString->GetPySelf();
+    ApyiPy_String mstr = "this is cool";
+    mstr.SetPyFlag(ApyiPyFlag::APYI_NOT_RELEASE);
+    return mstr.GetPySelf();
 }
 
 PyObject* hello_people(PyObject* self, PyObject* args)
 {
-    std::cout << "It works" << std::endl;
+    Py_CLEAR(args);
     ApyiPy_Int m_int = 44;
+    m_int.SetPyFlag(ApyiPyFlag::APYI_NOT_RELEASE);
     return m_int.GetPySelf(); 
 }
 
@@ -61,7 +62,9 @@ int main()
     ApyiModuleResource::GetInstance().InitializeAll();
     ApyiImportObject* mPort = ApyiImportManager::GetInstance().ImportModule("sak", false);
     ApyiPy_Function* importedFunction = mPort->GetFunction("selamshit");
-    importedFunction->Call();
+    PyErr_Print();
+    PyObject* ress = importedFunction->Call();
+    
     ApyiImportManager::GetInstance().ImportModule("sak", false);
     ApyiImportManager::GetInstance().ImportModule("myModule", false);
 

@@ -1,33 +1,33 @@
-file(GLOB_RECURSE APYI_CONFIGURATOR_SOURCE ./AdvancedPythonInterface/Configurator/*.cpp)
-file(GLOB_RECURSE APYI_CONFIGURATOR_HEADER ./AdvancedPythonInterface/Configurator/*.h)
+file(GLOB_RECURSE APYI_CONFIGURATOR_SOURCE ./APYI/Configurator/*.cpp)
+file(GLOB_RECURSE APYI_CONFIGURATOR_HEADER ./APYI/Configurator/*.h)
 
-file(GLOB_RECURSE APYI_DATE_SOURCE ./AdvancedPythonInterface/Date/*.cpp)
-file(GLOB_RECURSE APYI_DATE_HEADER ./AdvancedPythonInterface/Date/*.h)
+file(GLOB_RECURSE APYI_DATE_SOURCE ./APYI/Date/*.cpp)
+file(GLOB_RECURSE APYI_DATE_HEADER ./APYI/Date/*.h)
 
-file(GLOB_RECURSE APYI_FILESYSTEM_SOURCE ./AdvancedPythonInterface/FileSystem/*.cpp)
-file(GLOB_RECURSE APYI_FILESYSTEM_HEADER ./AdvancedPythonInterface/FileSystem/*.h)
+file(GLOB_RECURSE APYI_FILESYSTEM_SOURCE ./APYI/FileSystem/*.cpp)
+file(GLOB_RECURSE APYI_FILESYSTEM_HEADER ./APYI/FileSystem/*.h)
 
-file(GLOB_RECURSE APYI_IMPORTER_SOURCE ./AdvancedPythonInterface/Importer/*.cpp)
-file(GLOB_RECURSE APYI_IMPORTER_HEADER ./AdvancedPythonInterface/Importer/*.h)
+file(GLOB_RECURSE APYI_IMPORTER_SOURCE ./APYI/Importer/*.cpp)
+file(GLOB_RECURSE APYI_IMPORTER_HEADER ./APYI/Importer/*.h)
 
-file(GLOB_RECURSE APYI_LOGGING_SOURCE ./AdvancedPythonInterface/Logging/*.cpp)
-file(GLOB_RECURSE APYI_LOGGING_HEADER ./AdvancedPythonInterface/Logging/*.h)
+file(GLOB_RECURSE APYI_LOGGING_SOURCE ./APYI/Logging/*.cpp)
+file(GLOB_RECURSE APYI_LOGGING_HEADER ./APYI/Logging/*.h)
 
-file(GLOB_RECURSE APYI_OBJECTRESOURCE_SOURCE ./AdvancedPythonInterface/ObjectResource/*.cpp)
-file(GLOB_RECURSE APYI_OBJECTRESOURCE_HEADER ./AdvancedPythonInterface/ObjectResource/*.h)
+file(GLOB_RECURSE APYI_OBJECTRESOURCE_SOURCE ./APYI/ObjectResource/*.cpp)
+file(GLOB_RECURSE APYI_OBJECTRESOURCE_HEADER ./APYI/ObjectResource/*.h)
 
-file(GLOB_RECURSE APYI_OBJECTUTILS_SOURCE ./AdvancedPythonInterface/ObjectUtils/*.cpp)
-file(GLOB_RECURSE APYI_OBJECTUTILS_HEADER ./AdvancedPythonInterface/ObjectUtils/*.h)
+file(GLOB_RECURSE APYI_OBJECTUTILS_SOURCE ./APYI/ObjectUtils/*.cpp)
+file(GLOB_RECURSE APYI_OBJECTUTILS_HEADER ./APYI/ObjectUtils/*.h)
 
-file(GLOB_RECURSE APYI_PATTERNOPS_SOURCE ./AdvancedPythonInterface/PatternOps/*.cpp)
-file(GLOB_RECURSE APYI_PATTERNOPS_HEADER ./AdvancedPythonInterface/PatternOps/*.h)
+file(GLOB_RECURSE APYI_PATTERNOPS_SOURCE ./APYI/PatternOps/*.cpp)
+file(GLOB_RECURSE APYI_PATTERNOPS_HEADER ./APYI/PatternOps/*.h)
 
-file(GLOB_RECURSE APYI_PROGRAM_SOURCE ./AdvancedPythonInterface/Program/*.cpp)
-file(GLOB_RECURSE APYI_PROGRAM_HEADER ./AdvancedPythonInterface/Program/*.h)
+file(GLOB_RECURSE APYI_PROGRAM_SOURCE ./APYI/Program/*.cpp)
+file(GLOB_RECURSE APYI_PROGRAM_HEADER ./APYI/Program/*.h)
 
 
-file(GLOB_RECURSE APYI_PYTYPES_SOURCE ./AdvancedPythonInterface/PyTypes/*.cpp)
-file(GLOB_RECURSE APYI_PYTYPES_HEADER ./AdvancedPythonInterface/PyTypes/*.h)
+file(GLOB_RECURSE APYI_PYTYPES_SOURCE ./APYI/PyTypes/*.cpp)
+file(GLOB_RECURSE APYI_PYTYPES_HEADER ./APYI/PyTypes/*.h)
 
 add_library(apyi STATIC
         ${APYI_CONFIGURATOR_SOURCE}
