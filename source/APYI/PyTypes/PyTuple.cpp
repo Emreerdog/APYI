@@ -7,26 +7,22 @@ ApyiPy_Tuple::ApyiPy_Tuple(PyObject* other)
     {
         APYI_LOG(ApyiLogging::APYI_OUT_CONSOLE, ApyiLogging::kError, "Given object is not TUPLE type");
         selfPy = nullptr;
-        tupleSize = 0;
         tupleIndex = 0;
     }
     selfPy = other;
-    tupleSize = GetSize();
-    tupleIndex = tupleSize;
+    tupleIndex = GetSize();
 }
 
 ApyiPy_Tuple::ApyiPy_Tuple(const ApyiPy_Tuple& rhs)
 {
-    tupleSize = rhs.tupleSize;
     tupleIndex = rhs.tupleIndex;
     selfPy = rhs.selfPy;
 }
 
 ApyiPy_Tuple::ApyiPy_Tuple(size_t givenSize)
 {
-    tupleSize = givenSize;
     tupleIndex = 0;
-    selfPy = PyTuple_New(tupleSize);
+    selfPy = PyTuple_New(givenSize);
 }
 
 void ApyiPy_Tuple::AddItem(ApyiPyPython* givenItem)
@@ -54,11 +50,16 @@ PyObject* ApyiPy_Tuple::GetItem(int givenIndex)
 
 size_t ApyiPy_Tuple::GetSize()
 {
-    tupleSize = PyTuple_Size(selfPy);
-    return tupleSize;
+    return PyTuple_Size(selfPy);
 }
 
 ApyiPy_Tuple* ApyiPy_Tuple::GetSlice(int low, int high)
 {
-    return nullptr;
+    PyObject* result = PyTuple_GetSlice(selfPy, low, high);
+    if(result == NULL)
+    {
+        return nullptr;
+    }
+    ApyiPy_Tuple* slicedTuple = new ApyiPy_Tuple(result);
+    return slicedTuple;
 }

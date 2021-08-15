@@ -7,16 +7,15 @@
 
 class ApyiPy_Tuple : public ApyiPyPython{
 public:
-    ApyiPy_Tuple(PyObject*);
-    ApyiPy_Tuple(const ApyiPy_Tuple&);
-    explicit ApyiPy_Tuple(size_t);
-    void AddItem(ApyiPyPython*);
-    void SetItem(int, ApyiPyPython*);
-    PyObject* GetItem(int);
+    ApyiPy_Tuple(PyObject* other);
+    ApyiPy_Tuple(const ApyiPy_Tuple& rhs);
+    explicit ApyiPy_Tuple(size_t givenSize);
+    void AddItem(ApyiPyPython* givenItem);
+    void SetItem(int givenIndex, ApyiPyPython* givenItem);
+    PyObject* GetItem(int givenIndex);
     size_t GetSize();
-    ApyiPy_Tuple *GetSlice(int, int);
+    ApyiPy_Tuple *GetSlice(int low, int high);
 private:
-    size_t tupleSize;
     int tupleIndex;
 };
 

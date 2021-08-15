@@ -5,11 +5,11 @@
 class ApyiPy_String : public ApyiPyPython{
 public:
     ApyiPy_String();
-    ApyiPy_String(PyObject*);
-    ApyiPy_String(const ApyiPy_String&);
-    ApyiPy_String(const std::string&);
-    ApyiPy_String& operator=(const std::string&);
-    char operator[](size_t);
+    ApyiPy_String(PyObject* other);
+    ApyiPy_String(const ApyiPy_String& rhs);
+    ApyiPy_String(const std::string& rhs);
+    ApyiPy_String& operator=(const std::string& rhs);
+    char operator[](size_t index);
     unsigned int GetLength();
     unsigned int KindValue();
     void* RawData();

@@ -11,7 +11,8 @@ ApyiImportObject::ApyiImportObject()
 
 ApyiImportObject::ApyiImportObject(const ApyiImportObject& other)
 {
-    selfPy = other.selfPy;
+    PyObject* moduleName = PyModule_GetNameObject(other.selfPy);
+    selfPy = PyModule_NewObject(moduleName);
     selfName = other.selfName;
 }
 

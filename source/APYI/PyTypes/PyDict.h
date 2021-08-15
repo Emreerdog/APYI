@@ -8,7 +8,6 @@ public:
     ApyiDict();
     ApyiDict(PyObject*);
     ApyiDict(const ApyiDict&);
-    ApyiDict(bool);
     ~ApyiDict();
     int IsContains(const char*, ApyiPyPython*);
     int SetItem(const char*, ApyiPyPython*);
@@ -19,7 +18,6 @@ public:
 
 private:
     void ClearDict();
-    PyObject* itemList;
 };
 
 #endif /* PYDICT_H */

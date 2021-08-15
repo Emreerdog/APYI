@@ -1,4 +1,5 @@
 #include <APYI/PyTypes/PyDict.h>
+#include <APYI/PyTypes/PyString.h>
 
 ApyiDict::ApyiDict()
 {
@@ -7,25 +8,20 @@ ApyiDict::ApyiDict()
 
 ApyiDict::ApyiDict(PyObject* other)
 {
+    if(selfPy != NULL)
+    {
+        ClearDict();
+    }
     selfPy = other;
 }
 
 ApyiDict::ApyiDict(const ApyiDict& other)
 {
-    selfPy = other.selfPy;
-    itemList = other.itemList;
-}
-
-ApyiDict::ApyiDict(bool bIsNew)
-{
-    if(bIsNew)
+    if(selfPy != NULL)
     {
-        selfPy = PyDict_New();
+        ClearDict();
     }
-    else
-    {
-        itemList = nullptr;
-    }
+    selfPy = PyDict_Copy(other.selfPy);
 }
 
 ApyiDict::~ApyiDict()
@@ -38,7 +34,6 @@ void ApyiDict::ClearDict()
     if(EPF == ApyiPyFlag::APYI_RELEASE)
     {
         PyDict_Clear(selfPy);
-        Py_CLEAR(itemList);
     }
 }
 
@@ -96,13 +91,7 @@ void ApyiDict::GetItemAsString(const char* key, std::string& out)
 
 PyObject* ApyiDict::GetItemList()
 {
-    if(itemList == NULL)
-    {
-        itemList = PyDict_Items(selfPy);
-    }
-    return itemList;
+    return PyDict_Items(selfPy);
 }
-
-
 
 

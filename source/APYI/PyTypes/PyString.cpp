@@ -7,6 +7,10 @@ ApyiPy_String::ApyiPy_String()
 
 ApyiPy_String::ApyiPy_String(PyObject* other)
 {
+    if(selfPy != NULL)
+    {
+        SelfClean();
+    }
     selfPy = other;
     m_callData.bHasAttribute = false;
     m_callData.ObjectSize = PyUnicode_GET_LENGTH(selfPy);
@@ -15,7 +19,13 @@ ApyiPy_String::ApyiPy_String(PyObject* other)
 
 ApyiPy_String::ApyiPy_String(const ApyiPy_String& rhs)
 {
-    selfPy = rhs.selfPy;
+    if(selfPy != NULL)
+    {
+        SelfClean();
+    }
+    PyObject* otherPy = rhs.GetPySelf();
+    const char* stringValue = PyUnicode_AS_DATA(otherPy);
+    selfPy = PyUnicode_FromString(stringValue);
     m_callData.bHasAttribute = rhs.m_callData.bHasAttribute;
     m_callData.ObjectSize = rhs.m_callData.ObjectSize;
     m_callData.TypeName = rhs.m_callData.TypeName;
@@ -23,6 +33,10 @@ ApyiPy_String::ApyiPy_String(const ApyiPy_String& rhs)
 
 ApyiPy_String::ApyiPy_String(const std::string& rhs)
 {
+    if(selfPy != NULL)
+    {
+        SelfClean();
+    }
     selfPy = PyUnicode_FromString(rhs.c_str());
     m_callData.bHasAttribute = false;
     m_callData.ObjectSize = PyUnicode_GET_LENGTH(selfPy);

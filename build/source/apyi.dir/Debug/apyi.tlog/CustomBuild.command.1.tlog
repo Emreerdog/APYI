@@ -1,0 +1,10 @@
+^C:\USERS\EMREE\DESKTOP\ERR\APYI\SOURCE\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/emree/Desktop/Err/APYI -BC:/Users/emree/Desktop/Err/APYI/build --check-stamp-file C:/Users/emree/Desktop/Err/APYI/build/source/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

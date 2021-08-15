@@ -8,7 +8,7 @@ ApyiImportManager::ApyiImportManager()
 
 }
 
-ApyiImportObject* ApyiImportManager::ImportModule(const char* moduleName, bool bIsDistributed=false)
+ApyiImportObject* ApyiImportManager::ImportModule(const char* moduleName)
 {
     PyObject* importedObject = PyImport_ImportModule(moduleName);
     if(importedObject == NULL)

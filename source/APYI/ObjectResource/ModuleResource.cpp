@@ -83,7 +83,7 @@ void ApyiModuleResource::InitializeAll()
 {
     for(auto eachModule : moduleMethodMap)
     {
-        ApyiImportObject* mportObj = ApyiImportManager::GetInstance().ImportModule(eachModule.first, false);
+        ApyiImportObject* mportObj = ApyiImportManager::GetInstance().ImportModule(eachModule.first);
         delete mportObj;
     }
 }

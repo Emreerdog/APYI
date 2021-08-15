@@ -11,7 +11,7 @@ ApyiPyPython::~ApyiPyPython()
 {
     if(EPF == ApyiPyFlag::APYI_RELEASE)
     {
-        Py_CLEAR(selfPy);
+        SelfClean();
     }
     
 }
@@ -58,4 +58,9 @@ void ApyiPyPython::IncreaseReference()
 void ApyiPyPython::DecreaseReference()
 {
     Py_DECREF(selfPy);
+}
+
+void ApyiPyPython::SelfClean()
+{
+    Py_CLEAR(selfPy);
 }

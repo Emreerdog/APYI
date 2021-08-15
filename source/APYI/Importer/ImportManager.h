@@ -9,7 +9,7 @@ class ApyiImportObject;
 class ApyiImportManager : public UErSingleton<ApyiImportManager>{
 public:
     ApyiImportManager();
-    ApyiImportObject* ImportModule(const char*, bool);
+    ApyiImportObject* ImportModule(const char*);
 private:
 };
 

@@ -19,6 +19,7 @@ public:
     virtual void DecreaseReference() override;
     
 protected:
+    void SelfClean();
 };
 
 #endif /* PYPYTHON_H */

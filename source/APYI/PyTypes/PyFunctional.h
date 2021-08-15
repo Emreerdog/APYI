@@ -9,23 +9,21 @@ class ApyiPy_Tuple;
 class ApyiPy_Function : public ApyiPyPython{
 public:
     ApyiPy_Function();
-    ApyiPy_Function(PyObject*);
-    ApyiPy_Function(const ApyiPy_Function&);
+    ApyiPy_Function(PyObject* other);
+    ApyiPy_Function(const ApyiPy_Function& other);
     ~ApyiPy_Function();
     //PyObject* operator()();
     //PyObject* operator()(ApyiPyPython*);
 
     PyObject* Call();
-    PyObject* Call(ApyiPyPython*);
+    PyObject* Call(ApyiPyPython* arg, ApyiDict* kwargs = nullptr);
+    void SetFunctionDict(ApyiDict* newDict);
     ApyiDict* GetFunctionDict();
-    void SetFunctionDict(ApyiDict*);
-    void AddGlobal(const char*, ApyiPyPython*);
-    void PushOnStack(ApyiPyPython*);
+    void AddGlobal(const char* key, ApyiPyPython* targetGlobal);
     // a
 private:
     bool closureModified;
     ApyiDict *FunctionGlobals;
-    ApyiPy_Tuple *FunctionClosure;
     //PyObject* FCELL;
 };
 

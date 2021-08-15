@@ -1,0 +1,4 @@
+C:/Users/emree/Desktop/Err/APYI/build/CMakeFiles/APYI.dir
+C:/Users/emree/Desktop/Err/APYI/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/emree/Desktop/Err/APYI/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/emree/Desktop/Err/APYI/build/source/CMakeFiles/apyi.dir

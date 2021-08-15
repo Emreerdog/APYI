@@ -5,7 +5,7 @@
 
 ApyiPy_Function::ApyiPy_Function()
 {
-    FunctionGlobals = new ApyiDict();
+    
 }
 
 ApyiPy_Function::ApyiPy_Function(PyObject* other)
@@ -15,21 +15,29 @@ ApyiPy_Function::ApyiPy_Function(PyObject* other)
         selfPy = nullptr;
         APYI_LOG(ApyiLogging::APYI_OUT_CONSOLE, ApyiLogging::kError, "Given object is not a function type");
     }
+    if(selfPy != NULL)
+    {
+        Py_CLEAR(selfPy);
+        delete FunctionGlobals;
+    }
     selfPy = other;
-    PyObject* randomNumber = PyLong_FromLong(44);
-    PyObject* mCell = PyCell_New(randomNumber);
-    FunctionClosure = new ApyiPy_Tuple(1);
-    
-    //PyFunction_SetClosure(selfPy, cellTuple);
-    //FunctionClosure = new ApyiPy_Tuple(PyFunction_GetClosure(lul));
-    closureModified = false;
+    FunctionGlobals = new ApyiDict(PyFunction_GetGlobals(selfPy));
 }
 
 ApyiPy_Function::ApyiPy_Function(const ApyiPy_Function& other)
 {
-    selfPy = other.selfPy;
+    if(selfPy != NULL)
+    {
+        Py_CLEAR(selfPy);
+        delete FunctionGlobals;
+    }
+    PyObject* otherCode = PyFunction_GetCode(other.selfPy);
+    PyObject* _fGlobals = PyFunction_GetGlobals(other.selfPy);
+    PyObject* resultCopy = PyFunction_New(otherCode, _fGlobals);
+    PyObject* resultGlobals = PyFunction_GetGlobals(resultCopy); // Bringing new globals _fGlobals belong to old guy
+    selfPy = resultCopy;
     selfName = other.selfName;
-    FunctionGlobals = other.FunctionGlobals;
+    FunctionGlobals = new ApyiDict(resultGlobals);
     //FunctionClosure = other.FunctionClosure;
 }
 
@@ -52,7 +60,7 @@ PyObject* ApyiPy_Function::Call()
     return returnVal;
 }
 
-PyObject* ApyiPy_Function::Call(ApyiPyPython* arg)
+PyObject* ApyiPy_Function::Call(ApyiPyPython* arg, ApyiDict* kwargs)
 {
     PyObject* argSelf = arg->GetPySelf();
     //std::cout << FunctionClosure->GetSize() << std::endl;
@@ -61,8 +69,8 @@ PyObject* ApyiPy_Function::Call(ApyiPyPython* arg)
     {
         returnVal = PyObject_CallObject(selfPy, argSelf);
     }
-    else{
-        returnVal = PyObject_CallOneArg(selfPy, argSelf);
+    else{ 
+        returnVal = PyObject_CallOneArg(selfPy, argSelf);  
     }
     if(PyErr_Occurred())
     {
@@ -71,18 +79,19 @@ PyObject* ApyiPy_Function::Call(ApyiPyPython* arg)
     return returnVal;
 }
 
+
+
 void ApyiPy_Function::SetFunctionDict(ApyiDict* newDict)
 {
     FunctionGlobals = newDict;
+}
+
+ApyiDict* ApyiPy_Function::GetFunctionDict()
+{
+    return FunctionGlobals;
 }
 
 void ApyiPy_Function::AddGlobal(const char* key, ApyiPyPython* targetGlobal)
 {
     FunctionGlobals->SetItem(key, targetGlobal);
 }
-
-void ApyiPy_Function::PushOnStack(ApyiPyPython* obj)
-{
-
-}
-
