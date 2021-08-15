@@ -31,6 +31,9 @@
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\ObjectUtils\Attachable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\ObjectUtils\Numbers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\ObjectUtils\StringUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -44,6 +47,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyDict.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyFloat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyFunctional.cpp">
@@ -102,6 +108,9 @@
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\ObjectUtils\NonCopyable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\ObjectUtils\Numbers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\ObjectUtils\Singleton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -118,6 +127,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyDict.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyFloat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyFunctional.h">

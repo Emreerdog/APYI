@@ -16,14 +16,14 @@ public:
     //PyObject* operator()(ApyiPyPython*);
 
     PyObject* Call();
-    PyObject* Call(ApyiPyPython* arg, ApyiDict* kwargs = nullptr);
-    void SetFunctionDict(ApyiDict* newDict);
-    ApyiDict* GetFunctionDict();
+    PyObject* Call(ApyiPyPython* arg, ApyiPy_Dict* kwargs = nullptr);
+    void SetFunctionDict(ApyiPy_Dict* newDict);
+    ApyiPy_Dict* GetFunctionDict();
     void AddGlobal(const char* key, ApyiPyPython* targetGlobal);
     // a
 private:
     bool closureModified;
-    ApyiDict *FunctionGlobals;
+    ApyiPy_Dict *FunctionGlobals;
     //PyObject* FCELL;
 };
 

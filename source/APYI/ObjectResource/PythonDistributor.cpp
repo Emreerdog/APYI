@@ -14,7 +14,7 @@ ApyiPy_Function* ApyiDistributor::RequestFunction(const char* fName)
     return nullptr; // Not found
 }
 
-ApyiDict* ApyiDistributor::RequestDict(const char* dName)
+ApyiPy_Dict* ApyiDistributor::RequestDict(const char* dName)
 {
     auto resultant = DistributedDicts.find(dName);
     if(resultant != DistributedDicts.end())
@@ -41,7 +41,7 @@ void ApyiDistributor::DistributeFunction(ApyiPy_Function* fPtr)
     DistributedFunctions[fPtr->GetPyName().c_str()] = fPtr;
 }
 
-void ApyiDistributor::DistributeDict(ApyiDict* dPtr)
+void ApyiDistributor::DistributeDict(ApyiPy_Dict* dPtr)
 {
     DistributedDicts[dPtr->GetPyName().c_str()] = dPtr;
 }

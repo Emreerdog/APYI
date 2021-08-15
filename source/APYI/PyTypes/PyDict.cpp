@@ -1,12 +1,12 @@
 #include <APYI/PyTypes/PyDict.h>
 #include <APYI/PyTypes/PyString.h>
 
-ApyiDict::ApyiDict()
+ApyiPy_Dict::ApyiPy_Dict()
 {
     selfPy = PyDict_New();
 }
 
-ApyiDict::ApyiDict(PyObject* other)
+ApyiPy_Dict::ApyiPy_Dict(PyObject* other)
 {
     if(selfPy != NULL)
     {
@@ -15,7 +15,7 @@ ApyiDict::ApyiDict(PyObject* other)
     selfPy = other;
 }
 
-ApyiDict::ApyiDict(const ApyiDict& other)
+ApyiPy_Dict::ApyiPy_Dict(const ApyiPy_Dict& other)
 {
     if(selfPy != NULL)
     {
@@ -24,12 +24,12 @@ ApyiDict::ApyiDict(const ApyiDict& other)
     selfPy = PyDict_Copy(other.selfPy);
 }
 
-ApyiDict::~ApyiDict()
+ApyiPy_Dict::~ApyiPy_Dict()
 {
     ClearDict();
 }
 
-void ApyiDict::ClearDict()
+void ApyiPy_Dict::ClearDict()
 {
     if(EPF == ApyiPyFlag::APYI_RELEASE)
     {
@@ -37,7 +37,7 @@ void ApyiDict::ClearDict()
     }
 }
 
-int ApyiDict::IsContains(const char* key, ApyiPyPython* value)
+int ApyiPy_Dict::IsContains(const char* key, ApyiPyPython* value)
 {
     PyObject* _key = PyUnicode_FromString(key);
     int result = PyDict_Contains(selfPy, _key);
@@ -46,7 +46,7 @@ int ApyiDict::IsContains(const char* key, ApyiPyPython* value)
     return result;
 }
 
-int ApyiDict::SetItem(const char* key, ApyiPyPython* value)
+int ApyiPy_Dict::SetItem(const char* key, ApyiPyPython* value)
 {
     if(value->GetPySelf() == NULL || value == NULL)
     {
@@ -60,12 +60,12 @@ int ApyiDict::SetItem(const char* key, ApyiPyPython* value)
     return PyDict_SetItemString(selfPy, key, value->GetPySelf());
 }
 
-int ApyiDict::RemoveItem(const char* key)
+int ApyiPy_Dict::RemoveItem(const char* key)
 {
     return PyDict_DelItemString(selfPy, key);
 }
 
-PyObject* ApyiDict::GetItem(const char* key)
+PyObject* ApyiPy_Dict::GetItem(const char* key)
 {
     PyObject* tempItem = PyDict_GetItemString(selfPy, key);
     if(tempItem == NULL)
@@ -80,7 +80,7 @@ PyObject* ApyiDict::GetItem(const char* key)
     return tempItem;
 }
 
-void ApyiDict::GetItemAsString(const char* key, std::string& out)
+void ApyiPy_Dict::GetItemAsString(const char* key, std::string& out)
 {
     PyObject* itemString = PyDict_GetItemString(selfPy, key); // Borrowed
     
@@ -89,7 +89,7 @@ void ApyiDict::GetItemAsString(const char* key, std::string& out)
     Py_CLEAR(encodedStr);
 }
 
-PyObject* ApyiDict::GetItemList()
+PyObject* ApyiPy_Dict::GetItemList()
 {
     return PyDict_Items(selfPy);
 }

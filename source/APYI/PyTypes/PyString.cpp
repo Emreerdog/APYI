@@ -43,14 +43,6 @@ ApyiPy_String::ApyiPy_String(const std::string& rhs)
     m_callData.TypeName = "String";
 }
 
-ApyiPy_String& ApyiPy_String::operator=(const std::string& rhs)
-{
-    Py_CLEAR(selfPy);
-    selfPy = PyUnicode_FromString(rhs.c_str());
-    m_callData.ObjectSize = PyUnicode_GET_LENGTH(selfPy);
-    return *this;
-}
-
 char ApyiPy_String::operator[](size_t index)
 {
     return (char)(PyUnicode_READ_CHAR(selfPy, index));

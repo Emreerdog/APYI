@@ -8,7 +8,7 @@ public:
     ApyiPy_String(PyObject* other);
     ApyiPy_String(const ApyiPy_String& rhs);
     ApyiPy_String(const std::string& rhs);
-    ApyiPy_String& operator=(const std::string& rhs);
+
     char operator[](size_t index);
     unsigned int GetLength();
     unsigned int KindValue();

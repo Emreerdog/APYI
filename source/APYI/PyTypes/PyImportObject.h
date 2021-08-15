@@ -4,7 +4,7 @@
 #include <APYI/PyTypes/PyPython.h>
 
 class ApyiPy_Function;
-class ApyiDict;
+class ApyiPy_Dict;
 
 class ApyiImportObject : public ApyiPyPython{
 public:

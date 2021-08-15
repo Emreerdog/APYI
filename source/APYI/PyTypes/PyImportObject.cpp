@@ -43,7 +43,7 @@ ApyiPy_Function* ApyiImportObject::GetFunction(const char* funcName)
     }
     PyObject* funcDict = PyFunction_GetGlobals(requestedFunction);
     ApyiPy_Function *resultantFunc = new ApyiPy_Function(requestedFunction);
-    ApyiDict *functionDict = new ApyiDict(funcDict);
+    ApyiPy_Dict *functionDict = new ApyiPy_Dict(funcDict);
     resultantFunc->SetFunctionDict(functionDict);
     resultantFunc->SetPyName(funcName);
 

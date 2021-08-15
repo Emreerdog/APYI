@@ -21,7 +21,7 @@ ApyiPy_Function::ApyiPy_Function(PyObject* other)
         delete FunctionGlobals;
     }
     selfPy = other;
-    FunctionGlobals = new ApyiDict(PyFunction_GetGlobals(selfPy));
+    FunctionGlobals = new ApyiPy_Dict(PyFunction_GetGlobals(selfPy));
 }
 
 ApyiPy_Function::ApyiPy_Function(const ApyiPy_Function& other)
@@ -37,7 +37,7 @@ ApyiPy_Function::ApyiPy_Function(const ApyiPy_Function& other)
     PyObject* resultGlobals = PyFunction_GetGlobals(resultCopy); // Bringing new globals _fGlobals belong to old guy
     selfPy = resultCopy;
     selfName = other.selfName;
-    FunctionGlobals = new ApyiDict(resultGlobals);
+    FunctionGlobals = new ApyiPy_Dict(resultGlobals);
     //FunctionClosure = other.FunctionClosure;
 }
 
@@ -60,7 +60,7 @@ PyObject* ApyiPy_Function::Call()
     return returnVal;
 }
 
-PyObject* ApyiPy_Function::Call(ApyiPyPython* arg, ApyiDict* kwargs)
+PyObject* ApyiPy_Function::Call(ApyiPyPython* arg, ApyiPy_Dict* kwargs)
 {
     PyObject* argSelf = arg->GetPySelf();
     //std::cout << FunctionClosure->GetSize() << std::endl;
@@ -81,12 +81,12 @@ PyObject* ApyiPy_Function::Call(ApyiPyPython* arg, ApyiDict* kwargs)
 
 
 
-void ApyiPy_Function::SetFunctionDict(ApyiDict* newDict)
+void ApyiPy_Function::SetFunctionDict(ApyiPy_Dict* newDict)
 {
     FunctionGlobals = newDict;
 }
 
-ApyiDict* ApyiPy_Function::GetFunctionDict()
+ApyiPy_Dict* ApyiPy_Function::GetFunctionDict()
 {
     return FunctionGlobals;
 }

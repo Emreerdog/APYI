@@ -6,12 +6,11 @@
 
 namespace ApyiStringUtils
 {
-    void StringToWide(const std::string&, std::wstring&);
-    std::wstring StringToWide(const std::string&);
-    void WideToString(const std::wstring&, std::string&);
-    void StringToJson(const std::string&, Json::Value&);
-    void RemoveExtension(std::string&);
-
+    void StringToWide(const std::string& given, std::wstring& target);
+    std::wstring StringToWide(const std::string& given);
+    void WideToString(const std::wstring& given, std::string& target);
+    void StringToJson(const std::string& given, Json::Value& target);
+    void RemoveExtension(std::string& target);
 }
 
 #endif /* STRING_UTILS_H */

@@ -1,37 +1,62 @@
-#ifndef PYLONG_H
-#define PYLONG_H
+#ifndef APYI_PYLONG_H
+#define APYI_PYLONG_H
 
 #include <APYI/PyTypes/PyPython.h>
 #include <iostream>
 
+class ApyiPy_Float;
+
 class ApyiPy_Long : public ApyiPyPython{
 public:
     ApyiPy_Long();
-    ApyiPy_Long(const ApyiPy_Long&);
-    ApyiPy_Long(PyObject*);
-    ApyiPy_Long(const int&);
-    ApyiPy_Long(const long&);
-    ApyiPy_Long(const double&);
-
-    ApyiPy_Long operator+(const ApyiPyPython&);
-    ApyiPy_Long operator+(const long&);
-    ApyiPy_Long& operator+=(const ApyiPyPython&);
-    ApyiPy_Long& operator+=(const long&);
-
-    ApyiPy_Long operator-(const ApyiPyPython&);
-    ApyiPy_Long operator-(const long&);
-    ApyiPy_Long& operator-=(const ApyiPyPython&);
-    ApyiPy_Long& operator-=(const long&);
+    ApyiPy_Long(const ApyiPy_Long& other);
+    ApyiPy_Long(PyObject* val);
+    ApyiPy_Long(const int& other);
+    ApyiPy_Long(const long& other);
+    ApyiPy_Long(const double& other);
     
-    ApyiPy_Long operator*(const ApyiPyPython&);
-    ApyiPy_Long operator*(const long&);
-    ApyiPy_Long& operator*=(const ApyiPyPython&);
-    ApyiPy_Long& operator*=(const long&);
+    /* ADDITION OVERLOADS */
+    ApyiPy_Long operator+(const ApyiPyPython& other);
+    ApyiPy_Long operator+(const long& other);
+    ApyiPy_Long operator+(const int& other);
+    ApyiPy_Long operator+(const double& other);
+    ApyiPy_Long& operator+=(const ApyiPyPython& other);
+    ApyiPy_Long& operator+=(const long& other);
+    ApyiPy_Long& operator+=(const int& other);
+    ApyiPy_Long& operator+=(const double& other);
 
-    ApyiPy_Long operator/(const ApyiPyPython&);
-    ApyiPy_Long operator/(const long&);
-    ApyiPy_Long& operator/=(const ApyiPyPython&);
-    ApyiPy_Long& operator/=(const long&);
+    /* SUBTRACTION OVERLOADS */
+    ApyiPy_Long operator-(const ApyiPyPython& other);
+    ApyiPy_Long operator-(const long& other);
+    ApyiPy_Long operator-(const int& other);
+    ApyiPy_Long operator-(const double& other);
+    ApyiPy_Long& operator-=(const ApyiPyPython& other);
+    ApyiPy_Long& operator-=(const long& other);
+    ApyiPy_Long& operator-=(const int& other);
+    ApyiPy_Long& operator-=(const double& other);
+    
+    /* MULTIPLICATION OVERLOADS */
+    ApyiPy_Long operator*(const ApyiPyPython& other);
+    ApyiPy_Long operator*(const long& other);
+    ApyiPy_Long operator*(const int& other);
+    ApyiPy_Long operator*(const double& other);
+    ApyiPy_Long& operator*=(const ApyiPyPython& other);
+    ApyiPy_Long& operator*=(const long& other);
+    ApyiPy_Long& operator*=(const int& other);
+    ApyiPy_Long& operator*=(const double& other);
+
+    /* DIVISION OVERLOADS */
+    ApyiPy_Long operator/(const ApyiPyPython& other);
+    ApyiPy_Long operator/(const long& other);
+    ApyiPy_Long operator/(const int& other);
+    ApyiPy_Long operator/(const double& other);
+    ApyiPy_Long& operator/=(const ApyiPyPython& other);
+    ApyiPy_Long& operator/=(const long& other);
+    ApyiPy_Long& operator/=(const int& other);
+    ApyiPy_Long& operator/=(const double& other);
+
+    /* TYPE CONVERSIONS */
+
     long AsCLong() const;
 
     ~ApyiPy_Long();
@@ -39,7 +64,8 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const ApyiPy_Long& other);
 
 private:
-    void SelfRestore(PyObject*);
+
+    void SelfRestore(PyObject* res);
 };
 
-#endif /* PYINT_H */
+#endif /* APYI_PYLONG_H */

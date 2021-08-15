@@ -285,9 +285,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\ObjectResource\ObjectResource.h" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\ObjectResource\PythonDistributor.h" />
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\ObjectUtils\Attachable.cpp" />
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\ObjectUtils\Numbers.cpp" />
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\ObjectUtils\StringUtils.cpp" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\ObjectUtils\Attachable.h" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\ObjectUtils\NonCopyable.h" />
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\ObjectUtils\Numbers.h" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\ObjectUtils\Singleton.h" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\ObjectUtils\StringUtils.h" />
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PatternOps\PatternReader.cpp" />
@@ -296,6 +298,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\Program\EntryPoint.h" />
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\CallData.cpp" />
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyDict.cpp" />
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyFloat.cpp" />
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyFunctional.cpp" />
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyImportObject.cpp" />
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyLong.cpp" />
@@ -304,6 +307,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyTuple.cpp" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\CallData.h" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyDict.h" />
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyFloat.h" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyFunctional.h" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyImportObject.h" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyLong.h" />

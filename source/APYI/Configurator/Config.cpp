@@ -26,6 +26,7 @@ void ApyiConfig::ApplyConfig()
     std::wstring modulePath;
     ApyiPathTraits::EGetCurrentDir(modulePath);
     std::wstring PydefaultPyPath = Py_GetPath();
+    
     modulePath += ApyiStringUtils::StringToWide(configContent["relativeScriptPath"].asCString());
     std::wstring resultPath = PydefaultPyPath + L";" + modulePath;
 

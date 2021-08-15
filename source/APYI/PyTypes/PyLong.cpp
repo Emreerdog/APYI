@@ -49,6 +49,23 @@ ApyiPy_Long ApyiPy_Long::operator+(const long& other)
     return ApyiPy_Long(resultant);
 }
 
+ApyiPy_Long ApyiPy_Long::operator+(const int& other)
+{
+    PyObject* tempLong = PyLong_FromLong(other);
+    PyObject* resultant = PyNumber_Add(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    return ApyiPy_Long(resultant);
+}
+
+ApyiPy_Long ApyiPy_Long::operator+(const double& other)
+{
+    PyObject* tempLong = PyFloat_FromDouble(other);
+    PyObject* resultant = PyNumber_Add(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    return ApyiPy_Long(resultant);
+}
+
+
 ApyiPy_Long& ApyiPy_Long::operator+=(const ApyiPyPython& other)
 {
     PyObject* result = PyNumber_Add(selfPy, other.GetPySelf());
@@ -59,6 +76,24 @@ ApyiPy_Long& ApyiPy_Long::operator+=(const ApyiPyPython& other)
 ApyiPy_Long& ApyiPy_Long::operator+=(const long& other)
 {
     PyObject* tempLong = PyLong_FromLong(other);
+    PyObject* resultant = PyNumber_Add(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    SelfRestore(resultant);
+    return *this;
+}
+
+ApyiPy_Long& ApyiPy_Long::operator+=(const int& other)
+{
+    PyObject* tempLong = PyLong_FromLong(other);
+    PyObject* resultant = PyNumber_Add(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    SelfRestore(resultant);
+    return *this;
+}
+
+ApyiPy_Long& ApyiPy_Long::operator+=(const double& other)
+{
+    PyObject* tempLong = PyFloat_FromDouble(other);
     PyObject* resultant = PyNumber_Add(selfPy, tempLong);
     Py_CLEAR(tempLong);
     SelfRestore(resultant);
@@ -79,6 +114,23 @@ ApyiPy_Long ApyiPy_Long::operator-(const long& other)
     return ApyiPy_Long(resultant);
 }
 
+ApyiPy_Long ApyiPy_Long::operator-(const int& other)
+{
+    PyObject* tempLong = PyLong_FromLong(other);
+    PyObject* resultant = PyNumber_Subtract(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    return ApyiPy_Long(resultant);
+}
+
+ApyiPy_Long ApyiPy_Long::operator-(const double& other)
+{
+    PyObject* tempLong = PyFloat_FromDouble(other);
+    PyObject* resultant = PyNumber_Subtract(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    return ApyiPy_Long(resultant);
+}
+
+
 ApyiPy_Long& ApyiPy_Long::operator-=(const ApyiPyPython& other)
 {
     PyObject* resultant = PyNumber_Subtract(selfPy, other.GetPySelf());
@@ -95,6 +147,25 @@ ApyiPy_Long& ApyiPy_Long::operator-=(const long& other)
     return *this;
 }
 
+ApyiPy_Long& ApyiPy_Long::operator-=(const int& other)
+{
+    PyObject* tempLong = PyLong_FromLong(other);
+    PyObject* resultant = PyNumber_Subtract(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    SelfRestore(resultant);
+    return *this;
+}
+
+ApyiPy_Long& ApyiPy_Long::operator-=(const double& other)
+{
+    PyObject* tempLong = PyFloat_FromDouble(other);
+    PyObject* resultant = PyNumber_Subtract(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    SelfRestore(resultant);
+    return *this;
+}
+
+
 ApyiPy_Long ApyiPy_Long::operator*(const ApyiPyPython& other)
 {
     PyObject* resultant = PyNumber_Multiply(selfPy, other.GetPySelf());
@@ -104,6 +175,22 @@ ApyiPy_Long ApyiPy_Long::operator*(const ApyiPyPython& other)
 ApyiPy_Long ApyiPy_Long::operator*(const long& other)
 {
     PyObject* tempLong = PyLong_FromLong(other);
+    PyObject* resultant = PyNumber_Multiply(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    return ApyiPy_Long(resultant);
+}
+
+ApyiPy_Long ApyiPy_Long::operator*(const int& other)
+{
+    PyObject* tempLong = PyLong_FromLong(other);
+    PyObject* resultant = PyNumber_Multiply(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    return ApyiPy_Long(resultant);
+}
+
+ApyiPy_Long ApyiPy_Long::operator*(const double& other)
+{
+    PyObject* tempLong = PyFloat_FromDouble(other);
     PyObject* resultant = PyNumber_Multiply(selfPy, tempLong);
     Py_CLEAR(tempLong);
     return ApyiPy_Long(resultant);
@@ -125,6 +212,25 @@ ApyiPy_Long& ApyiPy_Long::operator*=(const long& other)
     return *this;
 }
 
+ApyiPy_Long& ApyiPy_Long::operator*=(const int& other)
+{
+    PyObject* tempLong = PyLong_FromLong(other);
+    PyObject* resultant = PyNumber_Multiply(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    SelfRestore(resultant);
+    return *this;
+}
+
+ApyiPy_Long& ApyiPy_Long::operator*=(const double& other)
+{
+    PyObject* tempLong = PyFloat_FromDouble(other);
+    PyObject* resultant = PyNumber_Multiply(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    SelfRestore(resultant);
+    return *this;
+}
+
+
 ApyiPy_Long ApyiPy_Long::operator/(const ApyiPyPython& other)
 {
     PyObject* resultant = PyNumber_FloorDivide(selfPy, other.GetPySelf());
@@ -134,6 +240,22 @@ ApyiPy_Long ApyiPy_Long::operator/(const ApyiPyPython& other)
 ApyiPy_Long ApyiPy_Long::operator/(const long& other)
 {
     PyObject* tempLong = PyLong_FromLong(other);
+    PyObject* resultant = PyNumber_FloorDivide(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    return ApyiPy_Long(resultant);
+}
+
+ApyiPy_Long ApyiPy_Long::operator/(const int& other)
+{
+    PyObject* tempLong = PyLong_FromLong(other);
+    PyObject* resultant = PyNumber_FloorDivide(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    return ApyiPy_Long(resultant);
+}
+
+ApyiPy_Long ApyiPy_Long::operator/(const double& other)
+{
+    PyObject* tempLong = PyFloat_FromDouble(other);
     PyObject* resultant = PyNumber_FloorDivide(selfPy, tempLong);
     Py_CLEAR(tempLong);
     return ApyiPy_Long(resultant);
@@ -154,6 +276,25 @@ ApyiPy_Long& ApyiPy_Long::operator/=(const long& other)
     SelfRestore(resultant);
     return *this;
 }
+
+ApyiPy_Long& ApyiPy_Long::operator/=(const int& other)
+{
+    PyObject* tempLong = PyLong_FromLong(other);
+    PyObject* resultant = PyNumber_FloorDivide(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    SelfRestore(resultant);
+    return *this;
+}
+
+ApyiPy_Long& ApyiPy_Long::operator/=(const double& other)
+{
+    PyObject* tempLong = PyFloat_FromDouble(other);
+    PyObject* resultant = PyNumber_FloorDivide(selfPy, tempLong);
+    Py_CLEAR(tempLong);
+    SelfRestore(resultant);
+    return *this;
+}
+
 
 long ApyiPy_Long::AsCLong() const
 {

@@ -26,12 +26,12 @@ void ApyiStringUtils::StringToJson(const std::string& given, Json::Value& target
     sToJson >> target;
 }
 
-void ApyiStringUtils::RemoveExtension(std::string& out){
-    size_t extensionPart = out.find_last_of(".");
+void ApyiStringUtils::RemoveExtension(std::string& target){
+    size_t extensionPart = target.find_last_of(".");
     if(extensionPart == std::string::npos)
     {
         // Do nothing
         return;
     }
-    out = out.substr(0, extensionPart);
+    target = target.substr(0, extensionPart);
 }

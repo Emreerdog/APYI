@@ -3,12 +3,12 @@
 
 #include <APYI/PyTypes/PyPython.h>
 
-class ApyiDict : public ApyiPyPython{
+class ApyiPy_Dict : public ApyiPyPython{
 public:
-    ApyiDict();
-    ApyiDict(PyObject*);
-    ApyiDict(const ApyiDict&);
-    ~ApyiDict();
+    ApyiPy_Dict();
+    ApyiPy_Dict(PyObject*);
+    ApyiPy_Dict(const ApyiPy_Dict&);
+    ~ApyiPy_Dict();
     int IsContains(const char*, ApyiPyPython*);
     int SetItem(const char*, ApyiPyPython*);
     int RemoveItem(const char*);

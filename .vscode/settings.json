@@ -70,7 +70,12 @@
         "cinttypes": "cpp",
         "codecvt": "cpp",
         "stack": "cpp",
-        "xtree": "cpp"
+        "xtree": "cpp",
+        "locale": "cpp",
+        "xlocbuf": "cpp",
+        "xlocmes": "cpp",
+        "xlocmon": "cpp",
+        "xloctime": "cpp"
     },
     "cmake.configureOnOpen": false
 }

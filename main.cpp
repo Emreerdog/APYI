@@ -5,6 +5,7 @@
 #include <APYI/PyTypes/PyFunctional.h>
 #include <APYI/PyTypes/PyString.h>
 #include <APYI/PyTypes/PyDict.h>
+#include <APYI/PyTypes/PyFloat.h>
 #include <APYI/FileSystem/PathTraits.h>
 #include <APYI/Configurator/Config.h>
 #include <APYI/ObjectUtils/StringUtils.h>
@@ -47,26 +48,22 @@ int main()
     //ApyiModuleResource::GetInstance().RegisterAll();
     
     Py_Initialize();
-    ApyiImportObject* mPort = ApyiImportManager::GetInstance().ImportModule("sak");
-    ApyiPy_String a = "hello";
-    ApyiPy_String b = "zuz";
-    b = a;
-    std::cout << a << std::endl;
-    ApyiPy_Long mLong = 11;
-    ApyiPy_Long zzLong = 55;
-    PyObject_SetAttrString(mLong.GetPySelf(), "someattr", PyLong_FromLong(22));
-    ApyiPy_Tuple functionArguments = ApyiPy_Tuple(2);
-    functionArguments.AddItem(&b);
-    functionArguments.AddItem(&mLong);
-    ApyiPy_Function* tempFunction = mPort->GetFunction("wow");
-    for(int i = 0; i < 10; i++)
+    while(1)
     {
-        tempFunction->Call(&functionArguments);
+        ApyiPy_Long var1 = 44;
+        ApyiPy_Long var2 = var1 + 32;
+        var2 += 44.3;
+
+        ApyiPy_Float var3 = "44.5";
+        ApyiPy_Float var4 = 65;
+        var3 /= var1;
+
+    
+        std::cout << var1 << std::endl;
+        std::cout << var2 << std::endl;
+        std::cout << var3 << std::endl;
+        std::cout << var4 << std::endl;
     }
-    std::cout << functionArguments.GetSize() << std::endl;
-    std::cout << "----" << std::endl;
-    std::cout << a << std::endl;
-    std::cout << mLong << std::endl;
 
     Py_FinalizeEx();
     getchar();
