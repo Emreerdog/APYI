@@ -22,8 +22,8 @@ public:
     void AddGlobal(const char* key, ApyiPyPython* targetGlobal);
     // a
 private:
-    bool closureModified;
     ApyiPy_Dict *FunctionGlobals;
+    ApyiPy_Tuple *givenArguments;
     //PyObject* FCELL;
 };
 

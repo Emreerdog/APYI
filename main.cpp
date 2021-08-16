@@ -48,23 +48,25 @@ int main()
     //ApyiModuleResource::GetInstance().RegisterAll();
     
     Py_Initialize();
-    while(1)
-    {
-        ApyiPy_Long var1 = 44;
-        ApyiPy_Long var2 = var1 + 32;
-        var2 += 44.3;
-
-        ApyiPy_Float var3 = "44.5";
-        ApyiPy_Float var4 = 65;
-        var3 /= var1;
-
     
-        std::cout << var1 << std::endl;
-        std::cout << var2 << std::endl;
-        std::cout << var3 << std::endl;
-        std::cout << var4 << std::endl;
-    }
+    ApyiPy_String myString = "hello world";
+    ApyiPy_Long mLong = 44;
+    ApyiPy_Float mFloat = 55.4;
+    ApyiPy_Dict denemeDict;
 
+    denemeDict.SetItem("firstVal", &myString);
+    denemeDict.SetItem("secondVal", &mLong);
+    denemeDict.SetItem("thirdVal", &mFloat);
+
+    ApyiImportObject* mPort = ApyiImportManager::GetInstance().ImportModule("sak");
+    ApyiPy_Function* myFunction = mPort->GetFunction("wow");
+    ApyiPy_Tuple arguments = ApyiPy_Tuple(3);
+    arguments.AddItem(&mLong);
+    arguments.AddItem(&mFloat);
+    arguments.AddItem(&denemeDict);
+    myFunction->AddGlobal("globalCalled", &myString);
+    ApyiPy_String functionResult = myFunction->Call(&arguments);
+    std::cout << myString << std::endl;
     Py_FinalizeEx();
     getchar();
     return 0;

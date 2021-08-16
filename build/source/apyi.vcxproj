@@ -301,6 +301,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyFloat.cpp" />
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyFunctional.cpp" />
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyImportObject.cpp" />
+    <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyList.cpp" />
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyLong.cpp" />
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyPython.cpp" />
     <ClCompile Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyString.cpp" />
@@ -310,6 +311,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyFloat.h" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyFunctional.h" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyImportObject.h" />
+    <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyList.h" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyLong.h" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyPython.h" />
     <ClInclude Include="C:\Users\emree\Desktop\Err\APYI\source\APYI\PyTypes\PyString.h" />

@@ -29,6 +29,12 @@ ApyiPy_Dict::~ApyiPy_Dict()
     ClearDict();
 }
 
+PyObject* ApyiPy_Dict::operator[](const char* key)
+{
+    PyObject* tempItem = PyDict_GetItemString(selfPy, key);
+    return tempItem;
+}
+
 void ApyiPy_Dict::ClearDict()
 {
     if(EPF == ApyiPyFlag::APYI_RELEASE)
@@ -63,6 +69,11 @@ int ApyiPy_Dict::SetItem(const char* key, ApyiPyPython* value)
 int ApyiPy_Dict::RemoveItem(const char* key)
 {
     return PyDict_DelItemString(selfPy, key);
+}
+
+size_t ApyiPy_Dict::GetSize()
+{
+    return PyDict_Size(selfPy);
 }
 
 PyObject* ApyiPy_Dict::GetItem(const char* key)

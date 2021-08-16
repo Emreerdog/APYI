@@ -14,7 +14,7 @@ public:
     void SetItem(int givenIndex, ApyiPyPython* givenItem);
     PyObject* GetItem(int givenIndex);
     size_t GetSize();
-    ApyiPy_Tuple *GetSlice(int low, int high);
+    ApyiPy_Tuple GetSlice(int low, int high);
 private:
     int tupleIndex;
 };

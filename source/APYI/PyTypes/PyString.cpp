@@ -2,7 +2,7 @@
 
 ApyiPy_String::ApyiPy_String()
 {
-    
+    selfPy = NULL;
 }
 
 ApyiPy_String::ApyiPy_String(PyObject* other)
@@ -43,12 +43,67 @@ ApyiPy_String::ApyiPy_String(const std::string& rhs)
     m_callData.TypeName = "String";
 }
 
-char ApyiPy_String::operator[](size_t index)
+ApyiPy_String ApyiPy_String::operator+(const std::string& rhs)
 {
-    return (char)(PyUnicode_READ_CHAR(selfPy, index));
+    PyObject* pString = PyUnicode_FromString(rhs.c_str());
+    PyObject* result = PyUnicode_Concat(selfPy, pString);
+    Py_CLEAR(pString);
+    return ApyiPy_String(result);
 }
 
-unsigned int ApyiPy_String::GetLength()
+ApyiPy_String ApyiPy_String::operator+(const ApyiPy_String& rhs)
+{
+    PyObject* result = PyUnicode_Concat(selfPy, rhs.GetPySelf());
+    return ApyiPy_String(result);
+}
+
+ApyiPy_String& ApyiPy_String::operator+=(const std::string& rhs)
+{
+    if(selfPy != NULL)
+    {
+        PyObject* pString = PyUnicode_FromString(rhs.c_str());
+        PyObject* result = PyUnicode_Concat(selfPy, pString);
+        Py_CLEAR(selfPy);
+        Py_CLEAR(pString);
+        selfPy = result;
+    }
+    else
+    {
+        PyObject* pString = PyUnicode_FromString(rhs.c_str());
+        selfPy = pString;
+    }
+    return *this;
+}
+
+ApyiPy_String& ApyiPy_String::operator+=(const ApyiPy_String& rhs)
+{
+    if(selfPy != NULL)
+    {
+        PyObject* result = PyUnicode_Concat(selfPy, rhs.GetPySelf());
+        Py_CLEAR(selfPy);
+        selfPy = result;
+    }
+    else
+    {
+        PyObject* pString = PyUnicode_FromObject(rhs.GetPySelf());
+        selfPy = pString;
+    }
+    return *this;
+}
+
+uint8_t* ApyiPy_String::operator[](size_t index)
+{
+    //return (char)(PyUnicode_READ_CHAR(selfPy, index));
+    Py_UCS1* result = PyUnicode_1BYTE_DATA(selfPy);
+    return result + index;
+}
+
+size_t ApyiPy_String::length()
+{
+    return PyUnicode_GET_LENGTH(selfPy);
+}
+
+size_t ApyiPy_String::size()
 {
     return PyUnicode_GET_LENGTH(selfPy);
 }
@@ -63,7 +118,7 @@ void* ApyiPy_String::RawData()
     return PyUnicode_DATA(selfPy);
 }
 
-bool ApyiPy_String::IsEmpty()
+bool ApyiPy_String::empty()
 {
     if(PyUnicode_GET_LENGTH(selfPy) == 0)
     {
@@ -72,17 +127,20 @@ bool ApyiPy_String::IsEmpty()
     return false;
 }
 
-const char* ApyiPy_String::AsString()
+const char* ApyiPy_String::c_str()
 {
-    PyObject* temp_bytes = PyUnicode_AsEncodedString(selfPy, "UTF-8", "strict");
-    const char* result = PyBytes_AS_STRING(temp_bytes);
-    Py_CLEAR(temp_bytes);
+    const char* result = PyUnicode_AsUTF8(selfPy);
     return result;
+}
+
+ApyiPy_String ApyiPy_String::substr(ApyiPy_String* str, size_t start, size_t end)
+{
+    return ApyiPy_String();
 }
 
 std::ostream& operator<<(std::ostream& os, ApyiPy_String& m_str)
 {
-    os << m_str.AsString();
+    os << m_str.c_str();
     return os;
 }
 
