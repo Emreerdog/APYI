@@ -51,6 +51,11 @@ size_t ApyiPy_Tuple::GetSize()
     return PyTuple_Size(selfPy);
 }
 
+void ApyiPy_Tuple::Resize(size_t newSize)
+{
+    
+}
+
 ApyiPy_Tuple ApyiPy_Tuple::GetSlice(int low, int high)
 {
     PyObject* result = PyTuple_GetSlice(selfPy, low, high);

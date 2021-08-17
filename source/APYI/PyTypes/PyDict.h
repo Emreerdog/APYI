@@ -9,6 +9,12 @@ public:
     ApyiPy_Dict(PyObject* other, bool isNew = false);
     ApyiPy_Dict(const ApyiPy_Dict& other);
     ~ApyiPy_Dict();
+    // class iterator {
+    //     public:
+
+    //     private:
+
+    // };
     PyObject* operator[](const char* key);
     int IsContains(const char* key, ApyiPyPython* value);
     int SetItem(const char* key, ApyiPyPython* value);

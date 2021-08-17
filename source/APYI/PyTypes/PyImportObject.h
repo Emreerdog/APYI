@@ -9,6 +9,7 @@ class ApyiPy_Dict;
 class ApyiImportObject : public ApyiPyPython{
 public:
     ApyiImportObject();
+    ApyiImportObject(PyObject* other);
     ApyiImportObject(const ApyiImportObject& other);
     ApyiPy_Function *GetFunction(const char* funcName);
     PyObject* GetAttribute(const char* varName);

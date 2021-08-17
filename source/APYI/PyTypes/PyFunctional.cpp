@@ -5,6 +5,8 @@
 
 ApyiPy_Function::ApyiPy_Function(PyObject* other)
 {
+    internalCount = 0;
+    nArgs = 0;
     givenArguments = nullptr; // Init val
     if(PyFunction_Check(other) == NULL)
     {
@@ -22,6 +24,8 @@ ApyiPy_Function::ApyiPy_Function(PyObject* other)
 
 ApyiPy_Function::ApyiPy_Function(const ApyiPy_Function& other)
 {
+    internalCount = 0;
+    nArgs = 0;
     givenArguments = nullptr;
     if(selfPy != NULL)
     {

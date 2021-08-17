@@ -1,7 +1,9 @@
 import json
 
-def wow():
-    print("heheehe")
+def wow(x, y):
+    x = 2
+    y = 22
+    return "hello"
     
     
     

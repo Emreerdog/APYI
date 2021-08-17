@@ -16,8 +16,7 @@ ApyiImportObject* ApyiImportManager::ImportModule(const char* moduleName)
         PyErr_Print();
         return nullptr;
     }
-
-    ApyiImportObject *resultantImObject = new ApyiImportObject();
+    ApyiImportObject *resultantImObject = new ApyiImportObject(importedObject);
     resultantImObject->SetPySelf(importedObject);
     resultantImObject->SetPyName(moduleName);
     // if(bIsDistributed)

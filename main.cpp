@@ -16,26 +16,31 @@
 #include <stdlib.h>
 #include <functional>
 
-// PyObject* spam_systems(PyObject* self, PyObject* args)
-// {
-//     const char* command;
-//     int sts;
-//     int otherArg;
+PyObject* spam_systems(PyObject* self, PyObject* args)
+{
+    const char* command;
+    int sts;
+    int otherArg;
 
-//     PyObject* other = nullptr;
-//     if(!PyArg_ParseTuple(args, "si|O", &command, &otherArg, &other))
-//         return NULL;
+    PyObject* other = nullptr;
+    if(!PyArg_ParseTuple(args, "si|O", &command, &otherArg, &other))
+        return NULL;
 
 
-//     //PyObject_CallNoArgs(other);
-//     std::cout << command << otherArg << std::endl;
-//     // sts = system(command);
+    //PyObject_CallNoArgs(other);
+    std::cout << command << otherArg << std::endl;
+    // sts = system(command);
     
-//     ApyiPy_String mstr = "this is cool";
-//     mstr.SetPyFlag(ApyiPyFlag::APYI_NOT_RELEASE);
-//     return mstr.GetPySelf();
-// }
+    ApyiPy_String mstr = "this is cool";
+    mstr.SetPyFlag(ApyiPyFlag::APYI_NOT_RELEASE);
+    return mstr.GetPySelf();
+}
 
+template <typename R, typename ... Types> 
+constexpr std::integral_constant<unsigned, sizeof ...(Types)> getArgumentCount( R(*f)(Types ...))
+{
+   return std::integral_constant<unsigned, sizeof ...(Types)>{};
+}
 
 int main()
 {
@@ -52,22 +57,12 @@ int main()
     ApyiPy_String myString = "hello world";
     ApyiPy_Long mLong = 44;
     ApyiPy_Float mFloat = 55.4;
-    ApyiPy_String m2String = "sss";
-    ApyiPy_Dict denemeDict;
-
-    denemeDict.SetItem("firstVal", &myString);
-    denemeDict.SetItem("secondVal", &mLong);
-    denemeDict.SetItem("thirdVal", &mFloat);
-    while(1)
-    {
-        ApyiImportObject* impObj = ApyiImportManager::GetInstance().ImportModule("sak");
-        ApyiPy_Function* mFunc = impObj->GetFunction("wow");
-        mFunc->Call();
-        delete mFunc;
-        delete impObj;
-    }
     
-    
+    ApyiImportObject* imp1 = ApyiImportManager::GetInstance().ImportModule("sak");
+    ApyiPy_Function* getFunc = imp1->GetFunction("wow");
+    PyObject* normalObject = getFunc->GetPySelf();
+    PyObject* functionCode = PyFunction_GetCode(normalObject);
+    std::cout << PyBytes_Check(functionCode) << std::endl;
 
     Py_FinalizeEx();
     getchar();
