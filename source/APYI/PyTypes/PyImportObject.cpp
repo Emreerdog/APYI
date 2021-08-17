@@ -16,11 +16,6 @@ ApyiImportObject::ApyiImportObject(const ApyiImportObject& other)
     selfName = other.selfName;
 }
 
-ApyiImportObject::~ApyiImportObject()
-{
-    Py_CLEAR(selfPy);
-}
-
 ApyiPy_Function* ApyiImportObject::GetFunction(const char* funcName)
 {
     PyObject* requestedFunction = PyObject_GetAttrString(selfPy, funcName);
@@ -41,10 +36,7 @@ ApyiPy_Function* ApyiImportObject::GetFunction(const char* funcName)
         std::cout << "Given Value (" << funcName << ") " << "is not a function" << std::endl;
         return nullptr;
     }
-    PyObject* funcDict = PyFunction_GetGlobals(requestedFunction);
     ApyiPy_Function *resultantFunc = new ApyiPy_Function(requestedFunction);
-    ApyiPy_Dict *functionDict = new ApyiPy_Dict(funcDict);
-    resultantFunc->SetFunctionDict(functionDict);
     resultantFunc->SetPyName(funcName);
 
     return resultantFunc;

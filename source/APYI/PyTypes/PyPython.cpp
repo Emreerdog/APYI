@@ -13,7 +13,6 @@ ApyiPyPython::~ApyiPyPython()
     {
         SelfClean();
     }
-    
 }
 
 PApyiCallData ApyiPyPython::GetCallData() const {

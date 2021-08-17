@@ -3,13 +3,9 @@
 #include <APYI/PyTypes/PyTuple.h>
 #include <APYI/Logging/Logger.h>
 
-ApyiPy_Function::ApyiPy_Function()
-{
-    
-}
-
 ApyiPy_Function::ApyiPy_Function(PyObject* other)
 {
+    givenArguments = nullptr; // Init val
     if(PyFunction_Check(other) == NULL)
     {
         selfPy = nullptr;
@@ -17,15 +13,16 @@ ApyiPy_Function::ApyiPy_Function(PyObject* other)
     }
     if(selfPy != NULL)
     {
-        Py_CLEAR(selfPy);
+        Py_DECREF(selfPy);
         delete FunctionGlobals;
     }
     selfPy = other;
-    FunctionGlobals = new ApyiPy_Dict(PyFunction_GetGlobals(selfPy));
+    FunctionGlobals = new ApyiPy_Dict(PyFunction_GetGlobals(selfPy), true);
 }
 
 ApyiPy_Function::ApyiPy_Function(const ApyiPy_Function& other)
 {
+    givenArguments = nullptr;
     if(selfPy != NULL)
     {
         Py_CLEAR(selfPy);
@@ -46,40 +43,47 @@ ApyiPy_Function::~ApyiPy_Function()
     delete FunctionGlobals;
 }
 
+// PyObject* ApyiPy_Function::Call()
+// {
+//     PyObject* returnVal = PyObject_CallNoArgs(selfPy);
+//     if(PyErr_Occurred())
+//     {
+//         PyErr_Print();
+//     }
+//     if(returnVal == NULL)
+//     {
+//         return nullptr;
+//     }
+//     return returnVal;
+// }
+
+// PyObject* ApyiPy_Function::Call(ApyiPyPython* arg, ApyiPy_Dict* kwargs)
+// {
+//     PyObject* argSelf = arg->GetPySelf();
+//     //std::cout << FunctionClosure->GetSize() << std::endl;
+//     PyObject* returnVal = nullptr;
+//     if(PyTuple_Check(argSelf))
+//     {
+//         returnVal = PyObject_CallObject(selfPy, argSelf);
+//     }
+//     else{ 
+//         returnVal = PyObject_CallOneArg(selfPy, argSelf);  
+//     }
+//     if(PyErr_Occurred())
+//     {
+//         PyErr_Print();
+//     }
+//     return returnVal;
+// }
+
 PyObject* ApyiPy_Function::Call()
 {
-    PyObject* returnVal = PyObject_CallNoArgs(selfPy);
-    if(PyErr_Occurred())
+    // No arguments
+    if (!givenArguments)
     {
-        PyErr_Print();
+        return PyObject_CallNoArgs(selfPy);
     }
-    if(returnVal == NULL)
-    {
-        return nullptr;
-    }
-    return returnVal;
 }
-
-PyObject* ApyiPy_Function::Call(ApyiPyPython* arg, ApyiPy_Dict* kwargs)
-{
-    PyObject* argSelf = arg->GetPySelf();
-    //std::cout << FunctionClosure->GetSize() << std::endl;
-    PyObject* returnVal = nullptr;
-    if(PyTuple_Check(argSelf))
-    {
-        returnVal = PyObject_CallObject(selfPy, argSelf);
-    }
-    else{ 
-        returnVal = PyObject_CallOneArg(selfPy, argSelf);  
-    }
-    if(PyErr_Occurred())
-    {
-        PyErr_Print();
-    }
-    return returnVal;
-}
-
-
 
 void ApyiPy_Function::SetFunctionDict(ApyiPy_Dict* newDict)
 {
@@ -95,3 +99,4 @@ void ApyiPy_Function::AddGlobal(const char* key, ApyiPyPython* targetGlobal)
 {
     FunctionGlobals->SetItem(key, targetGlobal);
 }
+

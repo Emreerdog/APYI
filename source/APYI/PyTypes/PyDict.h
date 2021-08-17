@@ -6,16 +6,16 @@
 class ApyiPy_Dict : public ApyiPyPython{
 public:
     ApyiPy_Dict();
-    ApyiPy_Dict(PyObject*);
-    ApyiPy_Dict(const ApyiPy_Dict&);
+    ApyiPy_Dict(PyObject* other, bool isNew = false);
+    ApyiPy_Dict(const ApyiPy_Dict& other);
     ~ApyiPy_Dict();
-    PyObject* operator[](const char*);
-    int IsContains(const char*, ApyiPyPython*);
-    int SetItem(const char*, ApyiPyPython*);
-    int RemoveItem(const char*);
+    PyObject* operator[](const char* key);
+    int IsContains(const char* key, ApyiPyPython* value);
+    int SetItem(const char* key, ApyiPyPython* value);
+    int RemoveItem(const char* key);
     size_t GetSize();
-    PyObject* GetItem(const char*);
-    void GetItemAsString(const char*, std::string&);
+    PyObject* GetItem(const char* key);
+    void GetItemAsString(const char* key, std::string& out);
     PyObject* GetItemList();
 
 private:

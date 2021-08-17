@@ -10,7 +10,6 @@ class ApyiImportObject : public ApyiPyPython{
 public:
     ApyiImportObject();
     ApyiImportObject(const ApyiImportObject& other);
-    ~ApyiImportObject();
     ApyiPy_Function *GetFunction(const char* funcName);
     PyObject* GetAttribute(const char* varName);
 private:

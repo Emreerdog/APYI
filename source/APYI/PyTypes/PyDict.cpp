@@ -6,13 +6,21 @@ ApyiPy_Dict::ApyiPy_Dict()
     selfPy = PyDict_New();
 }
 
-ApyiPy_Dict::ApyiPy_Dict(PyObject* other)
+ApyiPy_Dict::ApyiPy_Dict(PyObject* other, bool isNew)
 {
     if(selfPy != NULL)
     {
         ClearDict();
     }
-    selfPy = other;
+
+    if(isNew)
+    {
+        selfPy = PyDict_Copy(other);
+    }
+    else{
+        selfPy = other;
+    }
+    
 }
 
 ApyiPy_Dict::ApyiPy_Dict(const ApyiPy_Dict& other)
